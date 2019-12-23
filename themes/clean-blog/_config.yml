@@ -1,0 +1,60 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  Categories: /categories
+  Github:
+    # url: https://github.com/klugjo/hexo-theme-clean-blog
+    url: https://github.com/zhangyaaoo
+    icon: github
+
+# Title on top left of menu. Leave empty to use main blog title
+menu_title: A Box of Chocolates
+
+# URL of the Home page image
+index_cover: http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg
+
+# Default post title
+default_post_title: Untitled
+
+# Comments. Choose one by filling up the information
+comments:
+  # Disqus comments
+  disqus_shortname:
+  # Facebook comments
+  facebook:
+    appid:
+    comment_count: 5
+    comment_colorscheme: light
+
+# Google Analytics Tracking ID
+google_analytics:
+
+# Addthis ID
+addthis:
+
+# set your own favicon
+favicon:
+
+# Social Accounts
+twitter_url:
+twitter_handle:
+facebook_url:
+# github_url: https://github.com/klugjo/hexo-theme-clean-blog
+github_url: https://github.com/zhangyaaoo
+gitlab_url:
+linkedin_url:
+mailto:
+
+local_search:
+  enable: true
+  # if auto, trigger search by changing input
+  # if manual, trigger search by pressing enter key or search button
+  trigger: auto
+  # show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+
+
+
+
