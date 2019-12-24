@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>GCC 常用参数</title>
+    <url>/2019/12/23/GCC-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[<p>预处理阶段：（1.宏定义展开  2.头文件包含  3.条件编译）<br><strong>gcc hello.c -o hello.i -E</strong></p>
+<p>编译阶段：（将c文件（.c）编译得到汇编文件（.s））<br><strong>gcc hello.i -o hello.s -S</strong></p>
+<p>汇编阶段：（将汇编文件（.s）文件汇编得到二进制目标文件）<br><strong>gcc hello.s -o hello.o -c</strong></p>
+<p>链接阶段：（链接得到二进制可执行文件）<br><strong>gcc hello.o -o hello.out</strong></p>
+<p>可执行文件的执行：<br><strong>./hello.out</strong></p>
+<ul>
+<li><p>-E ：预编译处理</p>
+</li>
+<li><p>-S ：预处理-&gt;编译 生成汇编文件</p>
+</li>
+<li><p>-c ：预处理-&gt;编译-&gt;汇编 生成目标文件(但不链接)</p>
+</li>
+<li><p>-o ：指定输出的目标名称</p>
+</li>
+<li><p>-g ：添加调试信息</p>
+</li>
+<li><p>-I ：指定头文件搜索路径</p>
+</li>
+<li><p>-L ：指定链接库的路径</p>
+</li>
+<li><p>-l ：指定链接库的名称</p>
+</li>
+<li><p>-D ：编译时添加宏控制</p>
+</li>
+<li><p>-w ：不生成任何警告信息</p>
+</li>
+<li><p>-M : 获得目标文件的依赖关系</p>
+</li>
+<li><p>-MM : 获得目标文件的依赖关系，不包含系统头文件的依赖关系</p>
+</li>
+<li><p>-MT : 获得目标文件的依赖关系，并指定目标名</p>
+</li>
+<li><p>-Wall ：生成所有警告信息</p>
+</li>
+<li><p>-static ：此选项将禁止使用动态库，所以，编译出来的可执行文件一般都很大，运行时不需要加载动态链接库，就可以运行  </p>
+</li>
+<li><p>-share ：此选项将尽量使用动态库，所以生成文件比较小，但是运行的过程中需要加载动态链接库</p>
+</li>
+<li><p>-D ：<a href="http://blog.csdn.net/maopig/article/details/7230311" target="_blank" rel="noopener">Click for more</a><br>在Makefile文件里，我们会看到：<br>gcc -D MACRONAME=MACRODEF 或者 gcc -D MACRONAME<br>这样就定义了预处理宏，编译的时候可选代码就会被编译进去了。<br>对于GCC编译器，有如下选项：[-D macro=string]或者[–define-macro macro=string]<br>-D macro=string，等价于在头文件中定义：#define macro string<br>如：-D TRUE=true，等价于：#define TRUE true<br>-D macro，等价于：#define macro 1，实际上也达到了定义：#define macro的目的。<br>如：-D LINUX，等价于：#define LINUX 1（与#define LINUX作用类似）。<br>​</p>
+</li>
+<li><p>-On ：指定优化级别(其中 n 的取值可以为：0、1、2、3 。各个优化级别的区别参考<a href="http://blog.csdn.net/qq_31108501/article/details/51842166" target="_blank" rel="noopener">这里</a>)</p>
+<p>在实际的运用过程中，发现对于CPU密集型的程序来说，增加优化级别能够大幅缩短执行时间。比如下面给升级镜像增加OOB区域的数据（制作烧录镜像）。</p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/make/diff-Ox.png" alt="diff-Ox"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>GCC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IIC总线</title>
+    <url>/2019/12/21/IIC%E6%80%BB%E7%BA%BF/</url>
+    <content><![CDATA[<p><a href="http://www.ti.com/lit/an/slva704/slva704.pdf" target="_blank" rel="noopener">资料来源</a></p>
+<h2 id="IIC总线上的三种信号类型"><a href="#IIC总线上的三种信号类型" class="headerlink" title="IIC总线上的三种信号类型"></a>IIC总线上的三种信号类型</h2><h3 id="开始和结束信号"><a href="#开始和结束信号" class="headerlink" title="开始和结束信号"></a>开始和结束信号</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-start-stop.png" alt="iic-start-stop"></p>
+<h3 id="应答信号"><a href="#应答信号" class="headerlink" title="应答信号"></a>应答信号</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-ack.png" alt="iic-ack"></p>
+<h3 id="一个字节的传输"><a href="#一个字节的传输" class="headerlink" title="一个字节的传输"></a>一个字节的传输</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-single-byte-transfer.jpg" alt="iic-single-byte-transfer"></p>
+<blockquote>
+<p>看着这样的时序图的时候，有一个暗线：时间。既然叫“时序图”，那么时间是隐藏在图中的很重要变量，</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-single-byte-transfer-t.png" alt="iic-single-byte-transfer-t"></p>
+<p><strong>所以从左到右，随着时间的流逝，首先发送的数据是MSB，最后发送的是LSB。</strong></p>
+<h2 id="IIC协议内容"><a href="#IIC协议内容" class="headerlink" title="IIC协议内容"></a>IIC协议内容</h2><p>首先区分下面几个名词</p>
+<ul>
+<li>MASTER (主机)</li>
+<li>SLAVE (从机)</li>
+<li>TRANSMITTER (发送方)</li>
+<li>RECEIVER (接收方)</li>
+</ul>
+<p>==协议要求：==</p>
+<ol>
+<li>开始和结束信号只能由主机发送。</li>
+<li>应答信号由数据接收方发送，数据接收方可以是主机，也可以是从机。</li>
+<li>SCL上的时钟信号始终都是由主机发送的。</li>
+<li>在传输数据时：SDA上传输的数据必须在SCL为高电平期间保持稳定，SDA上的数据只能在SCL为低电平期间变化。在SCL为高电平期间改变SDA上的数据将被视为开始或者结束信号。</li>
+<li>IIC传输的字节必须是8位。每个字节传输后都要跟随一个应答信号。对每次数据传输的字节数没有严格限制。</li>
+<li>先发送高位字节(MSB)。</li>
+</ol>
+<h2 id="SDA-SCL线如何输出高低电平"><a href="#SDA-SCL线如何输出高低电平" class="headerlink" title="SDA/SCL线如何输出高低电平"></a>SDA/SCL线如何输出高低电平</h2><h3 id="拉低"><a href="#拉低" class="headerlink" title="拉低"></a>拉低</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-pulling-down.jpg" alt="iic-pulling-down"></p>
+<p><strong>当主机或从机想输出一个低电平，通过使FET导通，将引脚线接地，输出一个低电平。</strong></p>
+<p>The logic wanting to transmit a low will activate the pull-down FET, which will provide a short to ground, pulling the line low.</p>
+<h3 id="拉高"><a href="#拉高" class="headerlink" title="拉高"></a>拉高</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-release-high.jpg" alt="iic-release-high"></p>
+<p><strong>当主机或从机想输出一个高电平(只能通过释放总线)，通过使FET截止，将引脚线悬空，由于上拉电阻的作用，引脚将输出一个高电平。</strong></p>
+<p>When the slave or master wishes to transmit a logic high, it may only release the bus by turning off the pull-down FET. This leaves the bus floating, and the pull-up resistor will pull the voltage up to the voltage rail, which will be interpreted as a high. The figure shows the flow of current through the pull-up resistor, which pulls the bus high.</p>
+<h3 id="SDA、SCL线上的上拉电阻"><a href="#SDA、SCL线上的上拉电阻" class="headerlink" title="SDA、SCL线上的上拉电阻"></a>SDA、SCL线上的上拉电阻</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-pin-internal.jpg" alt="iic-pin-internal"></p>
+<p>最近，一些工程师在处理IIC单片机接口的工作问题时，对外部接上拉电阻的做法感到疑惑。由于单片机内部已经设置了上拉电阻，对于外部是否还需要接上拉的情况业界一直存在争议。针对I2C是否有必要接上拉的问题，就让牛人来为我们进行深入解读。</p>
+<p>由于一些单片机型号内部就设置了上拉电阻，因此有些上拉能力够了，是可以不加上拉电阻，有些不够，那就必须在外部加上拉电阻。在这种情况下，主要是取决于工程师所使用的单片机是否有标准的IIC标准接口。如果单片机使用了标准的IIC接口，那么接口在使能时引脚将进入漏极开路模式，可以省去外部接入的上拉电阻。但如果是使用单片机的引脚模拟IIC协议的话，就需要结合单片机引脚是否支持漏极开路模式或者上拉模式来进行判断，这种情况下一般是需要接入一个外部的上拉电阻的。</p>
+<p>除此之外，在IIC接口接入上拉电阻，也可以起到保护作用。由于I2C接口在工作时主要负责的是对高低电平检测的作用，一旦没有了上拉电阻的保护而直接接电源，出现器件拉低时整个系统就非常危险。根据I2C总线规范，总线空闲时两根线都必须为高。根据IIC总线规范的要求，总线空闲时两根线都必须为高。但由于IIC接口采用Open Drain机制，本身只能输出低电平而无法主动输出高电平，所以只能通过外部上拉电阻RP将信号线拉至高电平。因此I2C总线上的上拉电阻是必须要接入的。</p>
+<p>结语</p>
+<p>工程师需要依据IIC接口的具体情况，判断是否有必要在外部单独接入一个上拉电阻。如果没有使用标准的I2C接口，为了系统的稳定和安全，在外部进行上拉电阻的接入就是必须的工作了。<a href="https://www.dianyuan.com/article/30297.html" target="_blank" rel="noopener">摘抄自这里</a></p>
+<h2 id="一次完整的传输"><a href="#一次完整的传输" class="headerlink" title="一次完整的传输"></a>一次完整的传输</h2><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-data-transfer.jpg" alt="iic-data-transfer"><br>主机发送开始信号后，随后发送7-bit的从机地址，第8位发送读写位，读写位标志着：主机接下来是写数据到从设备，还是从从设备读数据。</p>
+<p>然后，<strong>主机释放SDA线 (释放以后，由于上拉电阻的作用，SDA线上的电平状态被上拉电阻拉高)，等待从设备的应答</strong>。每一个字节的数据传送完成后都会有一个位的应答。</p>
+<p>应答时：从机将SDA线上的电平拉低，并在第9个时钟周期SCL为高电平时一直保持拉低状态，保证主机能够正常读取从机的应答。</p>
+<p><strong>发送开始信号后，可以不发送结束信号，再一次发送开始信号。</strong></p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-writemode-7-addr.jpg" alt="iic-writemode-7-addr"></p>
+<p><strong>主机读写从机寄存器中的数值：</strong><br><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-single-byte-write.jpg" alt="iic-single-byte-write"></p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-single-byte-read.jpg" alt="iic-single-byte-read"><br>==注意==：主机接收器在接收到最后一个字节后，不会发出ACK信号。于是从机释放SDA线，以允许主机发出P信号结束传输. </p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-read-register.jpg" alt="iic-read-register"></p>
+<hr>
+<p>为什么向从机寄存器写数据时，不需要重新发送开始信号，而从从机寄存器读数据时，需要重新发送开始信号？</p>
+<p>在发送开始信号后，主机需要发送从机地址和读写位，可以认为读写位规定了这次开始传输的数据流向，写：表示数据由主机给出，从机接收数据；读：表示数据由从机给出，主机接收数据。</p>
+<p>当向从机寄存器写数据时，数据的流向一直是从主机流向从机；</p>
+<p>当从从机寄存器读数据时，我们首先需要向从机给出寄存器地址，然后从机给主机发送寄存器中的值，数据的流向所有改变，所以我们需要在向从机写入寄存器地址后，重新发送开始信号，此时读写位为1，指明接下来从机发送数据给主机。</p>
+<hr>
+<h2 id="总线的状态"><a href="#总线的状态" class="headerlink" title="总线的状态"></a>总线的状态</h2><h3 id="空闲状态"><a href="#空闲状态" class="headerlink" title="空闲状态"></a>空闲状态</h3><p>SDA、SCL都为高电平，开始信号发出前，结束信号发出后。</p>
+<h3 id="忙碌状态"><a href="#忙碌状态" class="headerlink" title="忙碌状态"></a>忙碌状态</h3><p>开始信号发出后，结束信号发出前都视为忙碌状态。</p>
+<h2 id="实际波形分析"><a href="#实际波形分析" class="headerlink" title="实际波形分析"></a>实际波形分析</h2><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-real-wave.jpg" alt="iic-real-wave"><strong>上图是一个实际的IIC传输的波形.(黄色:SCL 绿色:SDA)</strong></p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-real-wave-one-byte.jpg" alt="iic-real-wave-one-byte"><br><strong>实际的波形和上面理论分析的波形有所不同，不同的地方是</strong>: SDA线上的数据是在时钟负跳变时几乎马上输出的，如序号2和3标记的地方。但是这个符合：SDA上传输的数据必须在SCL为高电平期间保持稳定，SDA上的数据只能在SCL为低电平期间变化。</p>
+<ul>
+<li>数据传输起始信号,(序号1标记的地方): 时钟为高时,数据线上电平的负跳变.</li>
+<li>数据传输过程中,时钟为高时,数据线上保持电平稳定. 如序号4和5标记的地方.</li>
+<li>起始位(6)，地址传输(7)，读写位(8)，应答(9)</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/iic/iic-real-wave-parse.jpg" alt="iic-real-wave-parse"></p>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>IIC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于 Hexo &amp; Github 搭建自己的博客</title>
+    <url>/2019/12/18/%E5%9F%BA%E4%BA%8E-Hexo-Github-%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="Install-Node-js-amp-Git-amp-npm"><a href="#Install-Node-js-amp-Git-amp-npm" class="headerlink" title="Install Node.js &amp; Git &amp; npm"></a>Install Node.js &amp; Git &amp; npm</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nodejs git npm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装版本查看</span></span><br><span class="line">node --version</span><br><span class="line">git --version</span><br><span class="line">npm --version</span><br></pre></td></tr></table></figure>
+
+<h1 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看安装的版本</span></span><br><span class="line">hexo --version</span><br></pre></td></tr></table></figure>
+
+<h1 id="Starting…"><a href="#Starting…" class="headerlink" title="Starting…"></a>Starting…</h1><h3 id="初始化博客的工作目录"><a href="#初始化博客的工作目录" class="headerlink" title="初始化博客的工作目录"></a>初始化博客的工作目录</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init Blog</span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地检验</span></span><br><span class="line">cd Blog; hexo s</span><br><span class="line"><span class="meta">#</span><span class="bash"> 浏览器输入 localhost:4000 测试 Ctrl+C 结束</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 尝试新建自己的第一篇文章</span></span><br><span class="line">hexo n "基于-Hexo-GitHub-搭建自己的博客"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑 <span class="built_in">source</span>/_posts/基于-Hexo-GitHub-搭建自己的博客.md</span></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"><span class="meta">#</span><span class="bash"> 浏览器输入 localhost:4000 本地测试， Ctrl+C 结束</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="部署自己博客到GitHub"><a href="#部署自己博客到GitHub" class="headerlink" title="部署自己博客到GitHub"></a>部署自己博客到GitHub</h3><ul>
+<li><p><code>sudo npm install --save hexo-deployer-git</code> 安装hexo部署功能的插件</p>
+</li>
+<li><p>创建 yourname.github.io 的仓库</p>
+</li>
+<li><p>修改配置文件 <code>_config.yml</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Deployment</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/zhangyaaoo/zhangyaaoo.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>hexo d</code> 部署到GitHub</p>
+</li>
+<li><p><code>zhangyaaoo.github.io</code> 访问测试</p>
+</li>
+</ul>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><ul>
+<li><p>下载主题 <code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code> </p>
+</li>
+<li><p>修改博客配置文件 <code>_config.yml</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Extensions</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li><p><code>hexo clean</code> </p>
+</li>
+<li><p><code>hexo g</code> </p>
+</li>
+<li><p><code>hexo s</code> 浏览器输入 localhost:4000 本地测试， Ctrl+C 结束</p>
+</li>
+<li><p><code>hexo d</code> 部署到GitHub </p>
+</li>
+</ul>
+<h1 id="多地点管理博客"><a href="#多地点管理博客" class="headerlink" title="多地点管理博客"></a>多地点管理博客</h1><h3 id="旧电脑上"><a href="#旧电脑上" class="headerlink" title="旧电脑上"></a>旧电脑上</h3><ul>
+<li><p>首先在仓库 <strong>yourname.github.io</strong> 上新建一个分支用来存放博客的源文件。 <code>hexo d</code> 命令提交到master分支上的是站点的静态文件，在新的分支上，删除 <code>.git</code> 以外的所有文件夹。</p>
+</li>
+<li><p>将已有的Blog文件夹中的如下文件，拷贝到新的分支上，并提交至该分支。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">└── themes</span><br><span class="line">    ├── clean-blog</span><br><span class="line">    │   └── _config_clean-blog.yml</span><br><span class="line">    └── yilia</span><br><span class="line">        └── _config_yilia.yml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 为了不提交主题目录下的多余的文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 我这里并没有改动主题里的源文件，只改动了_config.yml这个文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 所以我只提交了yml配置文件。</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="新电脑上"><a href="#新电脑上" class="headerlink" title="新电脑上"></a>新电脑上</h3><ul>
+<li><p>克隆仓库 <strong>yourname.github.io</strong> 的分支上的内容到本地。当然新的电脑上，Node.js &amp; Git &amp; npm &amp; hexo 的安装不可少</p>
+</li>
+<li><p>克隆主题的源文件到对应的目录下</p>
+</li>
+<li><p>执行下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s # 本地访问测试</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/12/18/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+</search>
