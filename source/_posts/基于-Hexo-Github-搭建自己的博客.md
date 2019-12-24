@@ -89,3 +89,44 @@ hexo s
 
 - `hexo d` 部署到GitHub 
 
+
+# 多地点管理博客
+
+### 旧电脑上
+
+- 首先在仓库 **yourname.github.io** 上新建一个分支用来存放博客的源文件。 `hexo d` 命令提交到master分支上的是站点的静态文件，在新的分支上，删除 `.git` 以外的所有文件夹。
+
+- 将已有的Blog文件夹中的如下文件，拷贝到新的分支上，并提交至该分支。
+
+  ```shell
+
+  ├── _config.yml
+  ├── package.json
+  ├── scaffolds
+  ├── source
+  └── themes
+      ├── clean-blog
+      │   └── _config_clean-blog.yml
+      └── yilia
+          └── _config_yilia.yml
+  # 为了不提交主题目录下的多余的文件
+  # 我这里并没有改动主题里的源文件，只改动了_config.yml这个文件
+  # 所以我只提交了yml配置文件。
+  ```
+
+### 新电脑上
+
+- 克隆仓库 **yourname.github.io** 的分支上的内容到本地。当然新的电脑上，Node.js & Git & npm & hexo 的安装不可少
+
+- 克隆主题的源文件到对应的目录下
+
+- 执行下面的命令：
+
+  ```shell
+  npm install
+  npm install hexo-deployer-git --save
+  npm install hexo-server --save
+  hexo clean && hexo g && hexo s # 本地访问测试
+  ```
+
+  ​
