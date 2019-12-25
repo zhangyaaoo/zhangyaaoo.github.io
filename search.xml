@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git 常用命令记录</title>
+    <url>/2019/12/25/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h3><p>Linux上的安装：</p>
+<p>首先，安装Git需要的依赖包：sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev</p>
+<p>然后，sudo apt-get install git</p>
+<h3 id="初次运行Git的配置"><a href="#初次运行Git的配置" class="headerlink" title="初次运行Git的配置"></a>初次运行Git的配置</h3><p>可以通过 <code>git config</code> 命令来修改配置。有 <code>--system</code>、<code>--global</code>、<code>--local</code> 三个参数。</p>
+<p><code>git config --system</code> 读写的是/etc/gitconfig这个文件，系统上所有的用户共享的配置</p>
+<p><code>git config --global</code> 用户宿主目录下的 ~/.gitconfig</p>
+<p><code>git config --local</code>  本工程下的.git/config</p>
+<p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 常用示例</span></span><br><span class="line">git config --global user.name zhangyaaoo</span><br><span class="line">git config --global user.email zhangyaaoo@gmail.com</span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 别名</span></span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.unstage 'reset HEAD --'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存账号密码</span></span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git仓库初始化"><a href="#Git仓库初始化" class="headerlink" title="Git仓库初始化"></a>Git仓库初始化</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在现有的目录中初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 克隆已有的仓库</span></span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World</span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World my-hello-world</span><br></pre></td></tr></table></figure>
+
+<h3 id="gitignore文件"><a href="#gitignore文件" class="headerlink" title=".gitignore文件"></a>.gitignore文件</h3><p>对于不想追踪管理的文件，可以将文件名写入 <code>.gitignore</code> 文件中。</p>
+<p>对于已经被Git管理跟踪的文件，后来又想添加到 .gitignore 文件中，停止跟踪管理，则用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git rm --cached filename</span><br></pre></td></tr></table></figure>
+
+<p>从Git管理中删除。然后再将该文件名加入到 .gitignore 文件中，则可以停止跟踪管理该文件。</p>
+<h3 id="添加修改到暂存区和本地提交"><a href="#添加修改到暂存区和本地提交" class="headerlink" title="添加修改到暂存区和本地提交"></a>添加修改到暂存区和本地提交</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add &lt;files&gt;</span><br><span class="line">git commit -m 'log messages'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响</span></span><br><span class="line">git commit -a -m 'made a change'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 工作区的文件 相对于 暂存区的文件 的修改</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 暂存区的文件 相对于 已提交的文件 的修改</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git-log-amp-status"><a href="#Git-log-amp-status" class="headerlink" title="Git log  &amp; status"></a>Git log  &amp; status</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看<span class="built_in">log</span></span></span><br><span class="line">git log</span><br><span class="line">git log -p -2</span><br><span class="line">git log --stat</span><br><span class="line">git log --pretty=oneline</span><br><span class="line">git log --pretty=format:"%h - %an, %ar : %s"</span><br><span class="line">git log --pretty=format:"%h %s" --graph</span><br><span class="line">git log --oneline --decorate</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看状态</span></span><br><span class="line">git status </span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建分支</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换分支</span></span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 创建分支并切换到该分支</span></span></span><br><span class="line">git checkout -b &lt;branch_name&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 相当于：</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除分支</span></span><br><span class="line">git branch -d &lt;branch_name&gt;</span><br><span class="line">git branch -D &lt;branch_name&gt; # 如果删除的分支有未合入当前分支的修改时，需要删除用 D</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分支合并</span></span><br><span class="line">git checkout &lt;branch_name_1&gt;</span><br><span class="line">git merge &lt;branch_name_2&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有分支的列表</span></span><br><span class="line">git branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时显示每个分支的最后一次提交</span></span><br><span class="line">git branch -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> --merged 与 --no-merged 这两个有用的选项可以过滤列表中已经合并或尚未合并到当前分支的分支</span></span><br><span class="line">git branch --merged</span><br><span class="line">git branch --no-merged</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux-MTD-Subsystem</title>
+    <url>/2019/12/25/Linux-MTD-Subsystem/</url>
+    <content><![CDATA[<p><a href="http://www.linux-mtd.infradead.org/doc/general.html" target="_blank" rel="noopener">资料来源</a></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MTD Subsystem</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GCC 常用参数</title>
     <url>/2019/12/23/GCC-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/</url>
     <content><![CDATA[<p>预处理阶段：（1.宏定义展开  2.头文件包含  3.条件编译）<br><strong>gcc hello.c -o hello.i -E</strong></p>
