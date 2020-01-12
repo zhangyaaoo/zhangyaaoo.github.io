@@ -34,10 +34,7 @@ categories: Tools
   - `v` 以**字符**为单位选择, 选中光标所在的字符, （结合**上下左右**可以选取更多）
   - `V` 以**行**为单位选择, 选中光标所在行, （结合 **上下** 可以选取多行）
   - `c-v` ，结合**上下左右**，可以选中一个矩阵块。
-
-
 - 普通模式下，切换到 **插入模式（Insert Mode）** 的方法：
-
   - `a` 在当前**光标之后**插入内容
   - `A` 在当前**行尾**插入内容
   - `i` 在当前**光标之前**插入内容
@@ -200,7 +197,7 @@ map <right> :vertical resize+2<CR>
 
 ### 自定义占位符
 
-```
+```vim
 " Press space twice to jump to the next '<++>' and edit it
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
 ```

@@ -74,7 +74,8 @@ menu:
       type: 3  # 跳转类型 3：打开新的tab页
 
 # 文末声明
-article_txt: 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 zh.yao@foxmail.com
+# article_txt: 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 zh.yao@foxmail.com
+article_txt: 转载请注明来源，欢迎对文章中的内容批评指正. 可以邮件至 zh.yao@foxmail.com
 
 bottom_text: ©2016-2020 ZY
 # 自定义页面最下方的站点版权信息
@@ -139,7 +140,8 @@ blockquote: github
 # bracket : 类似于左右两个大括号的样式
 
 # table 的样式
-table: green_title
+# table: green_title
+table:
 # 为空时类似github的table样式
 # green 绿色样式
 # green_title 头部为青色的table样式
@@ -157,7 +159,7 @@ img_resize: default
 
 # 代码段高亮样式，markdown 语法 `demo`
 code:
-  theme: dark-red
+  theme: github
 # 支持主题：
 # dark-red: 红字(默认)
 # github: github样式（灰色底，黑字）
@@ -165,7 +167,7 @@ code:
 highlight:
   on: true # true开启代码高亮
   lineNum: true # true显示行号
-  theme: atom-light
+  theme: github
 # 代码高亮主题,效果可以查看 https://highlightjs.org/static/demo/
 # 支持主题：
 # sublime : 参考sublime的高亮主题
