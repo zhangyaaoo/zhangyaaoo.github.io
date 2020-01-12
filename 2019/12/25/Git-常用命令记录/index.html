@@ -23,7 +23,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -196,6 +196,14 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a class="color4">嵌入式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">IIC</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color1">Linux</a>
     </li>
     
@@ -205,14 +213,6 @@
     
     <li class="article-tag-list-item">
         <a class="color5">Hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">嵌入式</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">IIC</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -229,12 +229,12 @@
     
     <nav id="title-list-nav">
         
-        <a  class="嵌入式 "
-           href="/2019/12/23/GCC-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/"
-           data-tag="GCC"
+        <a  class="Tools "
+           href="/2020/01/12/%E4%B8%8A%E5%8F%A4%E7%A5%9E%E5%99%A8-VIM/"
+           data-tag="VIM"
            data-author="" >
-            <span class="post-title" title="GCC 常用参数">GCC 常用参数</span>
-            <span class="post-date" title="2019-12-23 21:08:06">2019/12/23</span>
+            <span class="post-title" title="上古神器 VIM">上古神器 VIM</span>
+            <span class="post-date" title="2020-01-12 10:24:00">2020/01/12</span>
         </a>
         
         <a  class="Tools "
@@ -253,12 +253,12 @@
             <span class="post-date" title="2019-12-25 18:08:18">2019/12/25</span>
         </a>
         
-        <a  class="Hexo "
-           href="/2019/12/18/hello-world/"
-           data-tag="Hexo"
+        <a  class="嵌入式 "
+           href="/2019/12/23/GCC-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/"
+           data-tag="GCC"
            data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2019-12-18 19:43:05">2019/12/18</span>
+            <span class="post-title" title="GCC 常用参数">GCC 常用参数</span>
+            <span class="post-date" title="2019-12-23 21:08:06">2019/12/23</span>
         </a>
         
         <a  class="嵌入式 "
@@ -277,16 +277,17 @@
             <span class="post-date" title="2019-12-18 19:43:06">2019/12/18</span>
         </a>
         
-        <a  class="Tools "
-           href="/2020/01/12/%E4%B8%8A%E5%8F%A4%E7%A5%9E%E5%99%A8-VIM/"
-           data-tag="VIM"
+        <a  class="Hexo "
+           href="/2019/12/18/hello-world/"
+           data-tag="Hexo"
            data-author="" >
-            <span class="post-title" title="上古神器 VIM">上古神器 VIM</span>
-            <span class="post-date" title="2020-01-12 10:24:00">2020/01/12</span>
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-12-18 19:43:05">2019/12/18</span>
         </a>
         
     </nav>
 </div>
+
     </div>
     <div class="hide-list">
         <div class="semicircle">
@@ -326,7 +327,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:687</span>
+        <span>字数:710</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -369,26 +370,87 @@
 <p><code>git config --global</code> 用户宿主目录下的 ~/.gitconfig</p>
 <p><code>git config --local</code>  本工程下的.git/config</p>
 <p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 常用示例</span></span><br><span class="line">git config --global user.name zhangyaaoo</span><br><span class="line">git config --global user.email zhangyaaoo@gmail.com</span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 别名</span></span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.unstage 'reset HEAD --'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存账号密码</span></span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+<pre><code class="shell"># 常用示例
+git config --global user.name zhangyaaoo
+git config --global user.email zhangyaaoo@gmail.com
+git config --global core.editor vim
 
-<h3 id="Git仓库初始化"><a href="#Git仓库初始化" class="headerlink" title="Git仓库初始化"></a>Git仓库初始化</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在现有的目录中初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 克隆已有的仓库</span></span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World</span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World my-hello-world</span><br></pre></td></tr></table></figure>
+# 别名
+git config --global alias.co checkout
+git config --global alias.st status
+git config --global alias.ci commit
+git config --global alias.br branch
+git config --global alias.unstage &#39;reset HEAD --&#39;
 
+# 列出所有配置
+git config --list
+
+# 保存账号密码
+git config --global credential.helper store</code></pre>
+<h3 id="Git仓库初始化"><a href="#Git仓库初始化" class="headerlink" title="Git仓库初始化"></a>Git仓库初始化</h3><pre><code class="shell"># 在现有的目录中初始化仓库
+git init
+
+# 克隆已有的仓库
+git clone https://github.com/zhangyaaoo/Hello-World
+git clone https://github.com/zhangyaaoo/Hello-World my-hello-world</code></pre>
 <h3 id="gitignore文件"><a href="#gitignore文件" class="headerlink" title=".gitignore文件"></a>.gitignore文件</h3><p>对于不想追踪管理的文件，可以将文件名写入 <code>.gitignore</code> 文件中。</p>
 <p>对于已经被Git管理跟踪的文件，后来又想添加到 .gitignore 文件中，停止跟踪管理，则用命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached filename</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">git rm --cached filename</code></pre>
 <p>从Git管理中删除。然后再将该文件名加入到 .gitignore 文件中，则可以停止跟踪管理该文件。</p>
-<h3 id="添加修改到暂存区和本地提交"><a href="#添加修改到暂存区和本地提交" class="headerlink" title="添加修改到暂存区和本地提交"></a>添加修改到暂存区和本地提交</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;files&gt;</span><br><span class="line">git commit -m 'log messages'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响</span></span><br><span class="line">git commit -a -m 'made a change'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 工作区的文件 相对于 暂存区的文件 的修改</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 暂存区的文件 相对于 已提交的文件 的修改</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
+<h3 id="添加修改到暂存区和本地提交"><a href="#添加修改到暂存区和本地提交" class="headerlink" title="添加修改到暂存区和本地提交"></a>添加修改到暂存区和本地提交</h3><pre><code class="shell">git add &lt;files&gt;
+git commit -m &#39;log messages&#39;
 
-<h3 id="Git-log-amp-status"><a href="#Git-log-amp-status" class="headerlink" title="Git log  &amp; status"></a>Git log  &amp; status</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看<span class="built_in">log</span></span></span><br><span class="line">git log</span><br><span class="line">git log -p -2</span><br><span class="line">git log --stat</span><br><span class="line">git log --pretty=oneline</span><br><span class="line">git log --pretty=format:"%h - %an, %ar : %s"</span><br><span class="line">git log --pretty=format:"%h %s" --graph</span><br><span class="line">git log --oneline --decorate</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看状态</span></span><br><span class="line">git status </span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+# -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响
+git commit -a -m &#39;made a change&#39;
 
+# 查看 工作区的文件 相对于 暂存区的文件 的修改
+git diff
 
-<h3 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建分支</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换分支</span></span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 创建分支并切换到该分支</span></span></span><br><span class="line">git checkout -b &lt;branch_name&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 相当于：</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除分支</span></span><br><span class="line">git branch -d &lt;branch_name&gt;</span><br><span class="line">git branch -D &lt;branch_name&gt; # 如果删除的分支有未合入当前分支的修改时，需要删除用 D</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分支合并</span></span><br><span class="line">git checkout &lt;branch_name_1&gt;</span><br><span class="line">git merge &lt;branch_name_2&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有分支的列表</span></span><br><span class="line">git branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时显示每个分支的最后一次提交</span></span><br><span class="line">git branch -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> --merged 与 --no-merged 这两个有用的选项可以过滤列表中已经合并或尚未合并到当前分支的分支</span></span><br><span class="line">git branch --merged</span><br><span class="line">git branch --no-merged</span><br></pre></td></tr></table></figure>
+# 查看 暂存区的文件 相对于 已提交的文件 的修改
+git diff --staged</code></pre>
+<h3 id="Git-log-amp-status"><a href="#Git-log-amp-status" class="headerlink" title="Git log  &amp; status"></a>Git log  &amp; status</h3><pre><code class="shell"># 查看log
+git log
+git log -p -2
+git log --stat
+git log --pretty=oneline
+git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
+git log --pretty=format:&quot;%h %s&quot; --graph
+git log --oneline --decorate
 
+# 查看状态
+git status 
+git status -s</code></pre>
+<h3 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h3><pre><code class="shell"># 创建分支
+git branch &lt;branch_name&gt;
 
+# 切换分支
+git checkout &lt;branch_name&gt;
+
+## 创建分支并切换到该分支
+git checkout -b &lt;branch_name&gt;
+# 相当于：
+git branch &lt;branch_name&gt;
+git checkout &lt;branch_name&gt;
+
+# 删除分支
+git branch -d &lt;branch_name&gt;
+git branch -D &lt;branch_name&gt; # 如果删除的分支有未合入当前分支的修改时，需要删除用 D
+
+# 分支合并
+git checkout &lt;branch_name_1&gt;
+git merge &lt;branch_name_2&gt;
+
+# 查看当前所有分支的列表
+git branch
+# 同时显示每个分支的最后一次提交
+git branch -v
+
+# --merged 与 --no-merged 这两个有用的选项可以过滤列表中已经合并或尚未合并到当前分支的分支
+git branch --merged
+git branch --no-merged</code></pre>
 
       
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 zh.yao@foxmail.com </span>
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的内容批评指正. 可以邮件至 zh.yao@foxmail.com </span>
     </div>
 </article>
 
@@ -396,7 +458,7 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Git 常用命令记录</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">687</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">710</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="ZY">ZY</a></p>
     <p><span class="copy-title">发布时间:</span>2019-12-25, 22:33:06</p>
     <p><span class="copy-title">最后更新:</span>2019-12-25, 22:35:38</p>
@@ -444,15 +506,13 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GCC','#Git','#Linux','#MTD Subsystem','#Hexo','#嵌入式','#IIC','#VIM',],
+            'data': ['#GCC','#Git','#嵌入式','#IIC','#Linux','#MTD Subsystem','#Hexo','#VIM',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
     })
     function initArticle() {
         /*渲染对应的表格样式*/
-        
-            $(".post .pjax table").addClass("green_title");
         
 
         /*渲染打赏样式*/
@@ -519,7 +579,7 @@
         border-right: 1px solid #C3CCD0;
         text-align: right;
         color: #AAA;
-        background-color: #fafafa;
+        background-color: ;
     }
     .pre-numbering.widther {
         width: 35px;
@@ -644,6 +704,16 @@
     }
     
 
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
     
 </style>
 

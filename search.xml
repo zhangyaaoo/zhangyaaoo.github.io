@@ -29,10 +29,7 @@
 <li><code>c-v</code> ，结合<strong>上下左右</strong>，可以选中一个矩阵块。</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li><p>普通模式下，切换到 <strong>插入模式（Insert Mode）</strong> 的方法：</p>
-<ul>
+<li>普通模式下，切换到 <strong>插入模式（Insert Mode）</strong> 的方法：<ul>
 <li><code>a</code> 在当前<strong>光标之后</strong>插入内容</li>
 <li><code>A</code> 在当前<strong>行尾</strong>插入内容</li>
 <li><code>i</code> 在当前<strong>光标之前</strong>插入内容</li>
@@ -46,8 +43,25 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">+-----------+  i,I,a,A,o,O,cc,C,s,S +-----------+</span><br><span class="line">| Normal    +----------&gt;------------+ Insert    |</span><br><span class="line">| mode      |                       | mode      |</span><br><span class="line">|           +----------<span class="xml"><span class="tag">&lt;<span class="name">------------+</span>           |</span></span></span><br><span class="line"><span class="xml">+-+---+-----+        <span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>          +-----------+</span><br><span class="line"><span class="code">    |  |    \  \   </span></span><br><span class="line"><span class="code">    |  |     \  \</span></span><br><span class="line"><span class="code">    |  |      \  \</span></span><br><span class="line"><span class="code">    |  |       \  \</span></span><br><span class="line">v,  |  |        \  v  R, r</span><br><span class="line">V   V  ^ <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>   \  \</span><br><span class="line">c-v |  |    <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span> ^  \</span><br><span class="line"><span class="code">    |  |           \  \</span></span><br><span class="line"><span class="code">    |  |            \  \</span></span><br><span class="line"><span class="code">    |  |             \  \</span></span><br><span class="line">+---+---+----+      +---+---+----+</span><br><span class="line">| Visual     |      | Replace    |</span><br><span class="line">| mode       |      | mode       |</span><br><span class="line">+------------+      +------------+</span><br></pre></td></tr></table></figure>
-
+<pre><code class="markdown">+-----------+  i,I,a,A,o,O,cc,C,s,S +-----------+
+| Normal    +----------&gt;------------+ Insert    |
+| mode      |                       | mode      |
+|           +----------&lt;------------+           |
++-+---+-----+        &lt;Esc&gt;          +-----------+
+    |  |    \  \   
+    |  |     \  \
+    |  |      \  \
+    |  |       \  \
+v,  |  |        \  v  R, r
+V   V  ^ &lt;Esc&gt;   \  \
+c-v |  |    &lt;Esc&gt; ^  \
+    |  |           \  \
+    |  |            \  \
+    |  |             \  \
++---+---+----+      +---+---+----+
+| Visual     |      | Replace    |
+| mode       |      | mode       |
++------------+      +------------+</code></pre>
 <p>在<strong>普通模式</strong>下，我们输入的字符被当做命令去执行。在<strong>插入模式</strong>和<strong>覆盖模式</strong>下，我们输入的字符就是我们编辑的内容。在<strong>可视模式</strong>下，我们可以选中内容，选中后，可以继续输入命令，对选中的内容进行操作。</p>
 <h3 id="VIM-按键功能总览图"><a href="#VIM-按键功能总览图" class="headerlink" title="VIM 按键功能总览图"></a>VIM 按键功能总览图</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/vi-vim-cheat-sheet.gif" alt="vi-vim-cheat-sheet"></p>
 <p>注：注意区分各个按键的颜色。Operator和Motion的颜色不一样。</p>
@@ -190,15 +204,22 @@
 <p>如果替换字符串中有/，可以使用+ #作为分隔符</p>
 </blockquote>
 <h1 id="自定义快捷键实现小功能"><a href="#自定义快捷键实现小功能" class="headerlink" title="自定义快捷键实现小功能"></a>自定义快捷键实现小功能</h1><h3 id="LEADER-键"><a href="#LEADER-键" class="headerlink" title="LEADER 键"></a>LEADER 键</h3><p>LEADER键简单的说就是一个前缀键，默认是 <code>\</code>，在上上面的图中，可以看到：<code>\</code> 是 not used。我们可以将 LEADER键+其他的键，组合成自己想要的快捷键。我们也可以将LEADER键重新map成其他更好按的键位，比如空格。方法是：<code>let mapleader=&quot; &quot;</code> 。</p>
-<h3 id="自定义分屏快捷键"><a href="#自定义分屏快捷键" class="headerlink" title="自定义分屏快捷键"></a>自定义分屏快捷键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; split the screens to up (horizontal), </span><br><span class="line">&quot;                    down (horizontal), </span><br><span class="line">&quot;                    left (vertical), </span><br><span class="line">&quot;                    right (vertical).</span><br><span class="line">map sj :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;:set splitbelow&lt;CR&gt;</span><br><span class="line">map sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br><span class="line">map sh :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;:set splitright&lt;CR&gt;</span><br><span class="line">map sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-
-<p>分屏后，可用通过 <code>:edit filename</code> 来打开新的文件。</p>
+<h3 id="自定义分屏快捷键"><a href="#自定义分屏快捷键" class="headerlink" title="自定义分屏快捷键"></a>自定义分屏快捷键</h3><pre><code>&quot; split the screens to up (horizontal), 
+&quot;                    down (horizontal), 
+&quot;                    left (vertical), 
+&quot;                    right (vertical).
+map sj :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;:set splitbelow&lt;CR&gt;
+map sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;
+map sh :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;:set splitright&lt;CR&gt;
+map sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;</code></pre><p>分屏后，可用通过 <code>:edit filename</code> 来打开新的文件。</p>
 <p>我们还可以自己定义调整分屏大小的快捷键，如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; Resize splits with arrow keys</span><br><span class="line">map &lt;up&gt; :res +2&lt;CR&gt;</span><br><span class="line">map &lt;down&gt; :res -2&lt;CR&gt;</span><br><span class="line">map &lt;left&gt; :vertical resize-2&lt;CR&gt;</span><br><span class="line">map &lt;right&gt; :vertical resize+2&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/split-screen.gif" alt="split-screen"></p>
-<h3 id="自定义占位符"><a href="#自定义占位符" class="headerlink" title="自定义占位符"></a>自定义占位符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; Press space twice to jump to the next &#39;&lt;++&gt;&#39; and edit it</span><br><span class="line">noremap &lt;LEADER&gt;&lt;LEADER&gt; &lt;Esc&gt;&#x2F;&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4i</span><br></pre></td></tr></table></figure>
-
+<pre><code>&quot; Resize splits with arrow keys
+map &lt;up&gt; :res +2&lt;CR&gt;
+map &lt;down&gt; :res -2&lt;CR&gt;
+map &lt;left&gt; :vertical resize-2&lt;CR&gt;
+map &lt;right&gt; :vertical resize+2&lt;CR&gt;</code></pre><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/split-screen.gif" alt="split-screen"></p>
+<h3 id="自定义占位符"><a href="#自定义占位符" class="headerlink" title="自定义占位符"></a>自定义占位符</h3><pre><code class="vim">&quot; Press space twice to jump to the next &#39;&lt;++&gt;&#39; and edit it
+noremap &lt;LEADER&gt;&lt;LEADER&gt; &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4i</code></pre>
 <p>这样设置之后，我在普通模式下，输入按下两次空格键后，会自动查找下一个’&lt;++&gt;’，删除它，并进入写入模式。</p>
 <p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/place-holder.gif" alt="place-holder"></p>
 <h1 id="插件的使用"><a href="#插件的使用" class="headerlink" title="插件的使用"></a>插件的使用</h1><p>我使用的vim插件管理器是vim-plug。安装和使用参考<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">这里</a>。</p>
@@ -208,11 +229,11 @@
 <p>To see the list of language types available, check the <code>$VIMRUNTIME/syntax/</code> directory. </p>
 <p>If you want the power of syntax highlighting for any Unix shell output, just pipe it to Vim. For example, <code>svn diff | vim -R -</code>.  Notice the dash in the end which tells Vim that it should read text from its standard input.</p>
 <h3 id="map-与-noremap-的区别"><a href="#map-与-noremap-的区别" class="headerlink" title="map 与 noremap 的区别"></a>map 与 noremap 的区别</h3><p>map 是 vim 很强大的功能，可以让使用 vim 变的更顺手。除非自己明确的知道映射的结果，否则，没有特殊原因的情况下，应该使用 <code>noremap</code> ，胡乱使用 <code>map</code> 可能会有一些意想不到的结果。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="keyword">b</span> <span class="keyword">a</span></span><br><span class="line"><span class="keyword">map</span> <span class="keyword">c</span> <span class="keyword">b</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="vim">map b a
+map c b</code></pre>
 <p>在有上面两个映射的情况下，如果按下 c 键，vim 首先将 c 键映射为 b 键，然后 vim 会再去检查 b 键有没有被映射，此时，b 键又会被映射为 a  键。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="keyword">b</span> <span class="keyword">a</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="keyword">c</span> <span class="keyword">b</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="vim">map b a
+noremap c b</code></pre>
 <p>使用 <code>noremap</code> 时，当按下 c 键会被映为 b 键，此时 vim 不会再去检查 b 键是否有映射，而是认为最终希望输入的就是 b 键。 </p>
 <p><strong>其它：</strong> </p>
 <ol>
@@ -278,14 +299,11 @@
 <p>这是因为高亮颜色设置不对，<code>:highlight&lt;CR&gt;</code> 命令可查看所以高亮的颜色配置。</p>
 <p>By the way，我的终端软件是Xshell6(Home)，也有可能和终端软件有关系。那我们就改了试试，看能不能生效。</p>
 <p>改前的配置：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Visual         xxx term=reverse ctermbg=7 guibg=LightGrey</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">Visual         xxx term=reverse ctermbg=7 guibg=LightGrey</code></pre>
 <p>命令：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:hi Visual term=reverse cterm=reverse ctermbg=none guibg=none</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">:hi Visual term=reverse cterm=reverse ctermbg=none guibg=none</code></pre>
 <p>改后的配置和效果：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Visual         xxx term=reverse cterm=reverse guibg=none</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">Visual         xxx term=reverse cterm=reverse guibg=none</code></pre>
 <p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-3.jpg" alt="visual-wt-3"></p>
 ]]></content>
       <categories>
@@ -306,23 +324,84 @@
 <p><code>git config --global</code> 用户宿主目录下的 ~/.gitconfig</p>
 <p><code>git config --local</code>  本工程下的.git/config</p>
 <p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 常用示例</span></span><br><span class="line">git config --global user.name zhangyaaoo</span><br><span class="line">git config --global user.email zhangyaaoo@gmail.com</span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 别名</span></span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.unstage 'reset HEAD --'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存账号密码</span></span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+<pre><code class="shell"># 常用示例
+git config --global user.name zhangyaaoo
+git config --global user.email zhangyaaoo@gmail.com
+git config --global core.editor vim
 
-<h3 id="Git仓库初始化"><a href="#Git仓库初始化" class="headerlink" title="Git仓库初始化"></a>Git仓库初始化</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在现有的目录中初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 克隆已有的仓库</span></span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World</span><br><span class="line">git clone https://github.com/zhangyaaoo/Hello-World my-hello-world</span><br></pre></td></tr></table></figure>
+# 别名
+git config --global alias.co checkout
+git config --global alias.st status
+git config --global alias.ci commit
+git config --global alias.br branch
+git config --global alias.unstage &#39;reset HEAD --&#39;
 
+# 列出所有配置
+git config --list
+
+# 保存账号密码
+git config --global credential.helper store</code></pre>
+<h3 id="Git仓库初始化"><a href="#Git仓库初始化" class="headerlink" title="Git仓库初始化"></a>Git仓库初始化</h3><pre><code class="shell"># 在现有的目录中初始化仓库
+git init
+
+# 克隆已有的仓库
+git clone https://github.com/zhangyaaoo/Hello-World
+git clone https://github.com/zhangyaaoo/Hello-World my-hello-world</code></pre>
 <h3 id="gitignore文件"><a href="#gitignore文件" class="headerlink" title=".gitignore文件"></a>.gitignore文件</h3><p>对于不想追踪管理的文件，可以将文件名写入 <code>.gitignore</code> 文件中。</p>
 <p>对于已经被Git管理跟踪的文件，后来又想添加到 .gitignore 文件中，停止跟踪管理，则用命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git rm --cached filename</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">git rm --cached filename</code></pre>
 <p>从Git管理中删除。然后再将该文件名加入到 .gitignore 文件中，则可以停止跟踪管理该文件。</p>
-<h3 id="添加修改到暂存区和本地提交"><a href="#添加修改到暂存区和本地提交" class="headerlink" title="添加修改到暂存区和本地提交"></a>添加修改到暂存区和本地提交</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add &lt;files&gt;</span><br><span class="line">git commit -m 'log messages'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响</span></span><br><span class="line">git commit -a -m 'made a change'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 工作区的文件 相对于 暂存区的文件 的修改</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 暂存区的文件 相对于 已提交的文件 的修改</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
+<h3 id="添加修改到暂存区和本地提交"><a href="#添加修改到暂存区和本地提交" class="headerlink" title="添加修改到暂存区和本地提交"></a>添加修改到暂存区和本地提交</h3><pre><code class="shell">git add &lt;files&gt;
+git commit -m &#39;log messages&#39;
 
-<h3 id="Git-log-amp-status"><a href="#Git-log-amp-status" class="headerlink" title="Git log  &amp; status"></a>Git log  &amp; status</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看<span class="built_in">log</span></span></span><br><span class="line">git log</span><br><span class="line">git log -p -2</span><br><span class="line">git log --stat</span><br><span class="line">git log --pretty=oneline</span><br><span class="line">git log --pretty=format:"%h - %an, %ar : %s"</span><br><span class="line">git log --pretty=format:"%h %s" --graph</span><br><span class="line">git log --oneline --decorate</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看状态</span></span><br><span class="line">git status </span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+# -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响
+git commit -a -m &#39;made a change&#39;
 
+# 查看 工作区的文件 相对于 暂存区的文件 的修改
+git diff
 
-<h3 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建分支</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换分支</span></span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 创建分支并切换到该分支</span></span></span><br><span class="line">git checkout -b &lt;branch_name&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 相当于：</span></span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除分支</span></span><br><span class="line">git branch -d &lt;branch_name&gt;</span><br><span class="line">git branch -D &lt;branch_name&gt; # 如果删除的分支有未合入当前分支的修改时，需要删除用 D</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分支合并</span></span><br><span class="line">git checkout &lt;branch_name_1&gt;</span><br><span class="line">git merge &lt;branch_name_2&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有分支的列表</span></span><br><span class="line">git branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时显示每个分支的最后一次提交</span></span><br><span class="line">git branch -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> --merged 与 --no-merged 这两个有用的选项可以过滤列表中已经合并或尚未合并到当前分支的分支</span></span><br><span class="line">git branch --merged</span><br><span class="line">git branch --no-merged</span><br></pre></td></tr></table></figure>
+# 查看 暂存区的文件 相对于 已提交的文件 的修改
+git diff --staged</code></pre>
+<h3 id="Git-log-amp-status"><a href="#Git-log-amp-status" class="headerlink" title="Git log  &amp; status"></a>Git log  &amp; status</h3><pre><code class="shell"># 查看log
+git log
+git log -p -2
+git log --stat
+git log --pretty=oneline
+git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
+git log --pretty=format:&quot;%h %s&quot; --graph
+git log --oneline --decorate
 
+# 查看状态
+git status 
+git status -s</code></pre>
+<h3 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h3><pre><code class="shell"># 创建分支
+git branch &lt;branch_name&gt;
 
+# 切换分支
+git checkout &lt;branch_name&gt;
+
+## 创建分支并切换到该分支
+git checkout -b &lt;branch_name&gt;
+# 相当于：
+git branch &lt;branch_name&gt;
+git checkout &lt;branch_name&gt;
+
+# 删除分支
+git branch -d &lt;branch_name&gt;
+git branch -D &lt;branch_name&gt; # 如果删除的分支有未合入当前分支的修改时，需要删除用 D
+
+# 分支合并
+git checkout &lt;branch_name_1&gt;
+git merge &lt;branch_name_2&gt;
+
+# 查看当前所有分支的列表
+git branch
+# 同时显示每个分支的最后一次提交
+git branch -v
+
+# --merged 与 --no-merged 这两个有用的选项可以过滤列表中已经合并或尚未合并到当前分支的分支
+git branch --merged
+git branch --no-merged</code></pre>
 ]]></content>
       <categories>
         <category>Tools</category>
@@ -509,21 +588,38 @@
   <entry>
     <title>基于 Hexo &amp; Github 搭建自己的博客</title>
     <url>/2019/12/18/%E5%9F%BA%E4%BA%8E-Hexo-Github-%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="Install-Node-js-amp-Git-amp-npm"><a href="#Install-Node-js-amp-Git-amp-npm" class="headerlink" title="Install Node.js &amp; Git &amp; npm"></a>Install Node.js &amp; Git &amp; npm</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nodejs git npm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装版本查看</span></span><br><span class="line">node --version</span><br><span class="line">git --version</span><br><span class="line">npm --version</span><br></pre></td></tr></table></figure>
-
-<h1 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看安装的版本</span></span><br><span class="line">hexo --version</span><br></pre></td></tr></table></figure>
-
-<h1 id="Starting…"><a href="#Starting…" class="headerlink" title="Starting…"></a>Starting…</h1><h3 id="初始化博客的工作目录"><a href="#初始化博客的工作目录" class="headerlink" title="初始化博客的工作目录"></a>初始化博客的工作目录</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init Blog</span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地检验</span></span><br><span class="line">cd Blog; hexo s</span><br><span class="line"><span class="meta">#</span><span class="bash"> 浏览器输入 localhost:4000 测试 Ctrl+C 结束</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 尝试新建自己的第一篇文章</span></span><br><span class="line">hexo n "基于-Hexo-GitHub-搭建自己的博客"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑 <span class="built_in">source</span>/_posts/基于-Hexo-GitHub-搭建自己的博客.md</span></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"><span class="meta">#</span><span class="bash"> 浏览器输入 localhost:4000 本地测试， Ctrl+C 结束</span></span><br></pre></td></tr></table></figure>
-
+    <content><![CDATA[<h1 id="Install-Node-js-amp-Git-amp-npm"><a href="#Install-Node-js-amp-Git-amp-npm" class="headerlink" title="Install Node.js &amp; Git &amp; npm"></a>Install Node.js &amp; Git &amp; npm</h1><pre><code class="shell">sudo apt install nodejs git npm
+# 安装版本查看
+node --version
+git --version
+npm --version
+</code></pre>
+<h1 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h1><pre><code class="shell">sudo npm install hexo-cli -g
+# 查看安装的版本
+hexo --version</code></pre>
+<h1 id="Starting…"><a href="#Starting…" class="headerlink" title="Starting…"></a>Starting…</h1><h3 id="初始化博客的工作目录"><a href="#初始化博客的工作目录" class="headerlink" title="初始化博客的工作目录"></a>初始化博客的工作目录</h3><pre><code class="shell">hexo init Blog
+# 本地检验
+cd Blog; hexo s
+# 浏览器输入 localhost:4000 测试 Ctrl+C 结束</code></pre>
+<h3 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h3><pre><code class="shell"># 尝试新建自己的第一篇文章
+hexo n &quot;基于-Hexo-GitHub-搭建自己的博客&quot;
+# 编辑 source/_posts/基于-Hexo-GitHub-搭建自己的博客.md
+hexo clean
+hexo g
+hexo s
+# 浏览器输入 localhost:4000 本地测试， Ctrl+C 结束</code></pre>
 <h3 id="部署自己博客到GitHub"><a href="#部署自己博客到GitHub" class="headerlink" title="部署自己博客到GitHub"></a>部署自己博客到GitHub</h3><ul>
 <li><p><code>sudo npm install --save hexo-deployer-git</code> 安装hexo部署功能的插件</p>
 </li>
 <li><p>创建 yourname.github.io 的仓库</p>
 </li>
 <li><p>修改配置文件 <code>_config.yml</code> </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Deployment</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/zhangyaaoo/zhangyaaoo.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<pre><code class="shell"># Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://github.com/zhangyaaoo/zhangyaaoo.github.io.git
+  branch: master</code></pre>
 </li>
 <li><p><code>hexo d</code> 部署到GitHub</p>
 </li>
@@ -534,8 +630,10 @@
 <li><p>下载主题 <code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code> </p>
 </li>
 <li><p>修改博客配置文件 <code>_config.yml</code> </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Extensions</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell"># Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: yilia</code></pre>
 </li>
 </ul>
 <ul>
@@ -552,8 +650,19 @@
 <li><p>首先在仓库 <strong>yourname.github.io</strong> 上新建一个分支用来存放博客的源文件。 <code>hexo d</code> 命令提交到master分支上的是站点的静态文件，在新的分支上，删除 <code>.git</code> 以外的所有文件夹。</p>
 </li>
 <li><p>将已有的Blog文件夹中的如下文件，拷贝到新的分支上，并提交至该分支。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">└── themes</span><br><span class="line">    ├── clean-blog</span><br><span class="line">    │   └── _config_clean-blog.yml</span><br><span class="line">    └── yilia</span><br><span class="line">        └── _config_yilia.yml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 为了不提交主题目录下的多余的文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 我这里并没有改动主题里的源文件，只改动了_config.yml这个文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 所以我只提交了yml配置文件。</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+└── themes
+    ├── clean-blog
+    │   └── _config_clean-blog.yml
+    └── yilia
+        └── _config_yilia.yml
+# 为了不提交主题目录下的多余的文件
+# 我这里并没有改动主题里的源文件，只改动了_config.yml这个文件
+# 所以我只提交了yml配置文件。</code></pre>
 </li>
 </ul>
 <h3 id="新电脑上"><a href="#新电脑上" class="headerlink" title="新电脑上"></a>新电脑上</h3><ul>
@@ -562,8 +671,10 @@
 <li><p>克隆主题的源文件到对应的目录下</p>
 </li>
 <li><p>执行下面的命令：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s # 本地访问测试</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">npm install
+npm install hexo-deployer-git --save
+npm install hexo-server --save
+hexo clean &amp;&amp; hexo g &amp;&amp; hexo s # 本地访问测试</code></pre>
 <p>​</p>
 </li>
 </ul>
@@ -579,17 +690,13 @@
     <title>Hello World</title>
     <url>/2019/12/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
       <categories>
