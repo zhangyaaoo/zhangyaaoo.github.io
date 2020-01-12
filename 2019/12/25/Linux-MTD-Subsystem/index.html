@@ -13,7 +13,9 @@
     
 
     
-        <meta name="description" content="资料来源"/>
+        <meta name="description" content="资料来源
+MTD(Memory Technology Devices)子系统提供了一个原始Flash设备的抽象层。对于不同类型的Flash设备，MTD子系统向上提供了相同的API。比如：NAND、OneNAND、NOR、AG-AND、ECC’d NOR 等等。
+MTD子系统并不管理块设备，比如：MM"/>
     
 
     <!--Author-->
@@ -28,7 +30,9 @@
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="资料来源"/>
+        <meta property="og:description" content="资料来源
+MTD(Memory Technology Devices)子系统提供了一个原始Flash设备的抽象层。对于不同类型的Flash设备，MTD子系统向上提供了相同的API。比如：NAND、OneNAND、NOR、AG-AND、ECC’d NOR 等等。
+MTD子系统并不管理块设备，比如：MM"/>
     
 
     <!--Open Graph Site Name-->
@@ -215,6 +219,39 @@
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p><a href="http://www.linux-mtd.infradead.org/doc/general.html" target="_blank" rel="noopener">资料来源</a></p>
+<p>MTD(Memory Technology Devices)子系统提供了一个原始Flash设备的抽象层。对于不同类型的Flash设备，MTD子系统向上提供了相同的API。比如：NAND、OneNAND、NOR、AG-AND、ECC’d NOR 等等。</p>
+<p>MTD子系统并不管理块设备，比如：MMC, eMMC, SD, CompactFlash 等等都属于块设备。这些块设备内部也有原始的Flash，另外芯片内部也有FTL(Flash Translation Layer)，让这些设备对外呈现出块设备的特性。</p>
+<p>更多关于<a href="http://www.linux-mtd.infradead.org/doc/ubifs.html#L_raw_vs_ftl" target="_blank" rel="noopener">Raw Flash 和 FTL Devices</a> 的对比。</p>
+<p>注意：SSD, MMC, eMMC, RS-MMC, SD, mini-SD, micro-SD, USB flash drive, CompactFlash, MemoryStick, MemoryStick Micro, and other FTL devices are <strong>block devices</strong>, not raw flash devices.</p>
+<p>块设备和MTD设备的区别：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Block device</strong></th>
+<th><strong>MTD device</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consists of sectors</td>
+<td>Consists of eraseblocks</td>
+</tr>
+<tr>
+<td>Sectors are small (512, 1024 bytes)</td>
+<td>Eraseblocks are larger (typically 128KiB)</td>
+</tr>
+<tr>
+<td>Maintains 2 main operations: <strong>read sector</strong> and <strong>write sector</strong></td>
+<td>Maintains 3 main operations: <strong>read from eraseblock</strong>, <strong>write to eraseblock</strong>, and <strong>erase eraseblock</strong></td>
+</tr>
+<tr>
+<td>Bad sectors are re-mapped and hidden by hardware (at least in modern LBA hard drives); in case of FTL devices it is the responsibility of FTL to provide this</td>
+<td>Bad eraseblocks are not hidden and should be dealt with in software</td>
+</tr>
+<tr>
+<td>Sectors are devoid of the wear-out property (in FTL devices it is the responsibility of FTL to provide this)</td>
+<td>Eraseblocks wear-out and become bad and unusable after about 103 (for MLC NAND) - 105 (NOR, SLC NAND) erase cycles</td>
+</tr>
+</tbody></table>
 
 
                 
@@ -262,7 +299,7 @@
 
                     
                 </ul>
-                <p class="copyright text-muted">&copy; 2019 ZY<br></p>
+                <p class="copyright text-muted">&copy; 2020 ZY<br></p>
                 <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
                 <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
             </div>

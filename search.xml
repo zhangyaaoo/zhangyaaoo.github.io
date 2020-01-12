@@ -1,6 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>上古神器 VIM</title>
+    <url>/2020/01/12/%E4%B8%8A%E5%8F%A4%E7%A5%9E%E5%99%A8-VIM/</url>
+    <content><![CDATA[<blockquote>
+<p><a href="http://vim.swaroopch.com/" target="_blank" rel="noopener">A Byte Of VIM</a><br><a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html" target="_blank" rel="noopener">按键功能总览</a><br><a href="https://www.cnblogs.com/yangjig/p/6014198.html" target="_blank" rel="noopener">参考博客一</a></p>
+</blockquote>
+<blockquote>
+<p>不可错过的VIM视频教程：<a href="https://www.bilibili.com/video/av55498503" target="_blank" rel="noopener">一</a>、<a href="https://www.bilibili.com/video/av55664166" target="_blank" rel="noopener">二</a>、<a href="https://www.bilibili.com/video/av56020134" target="_blank" rel="noopener">三</a>、<a href="https://www.bilibili.com/video/av67091857" target="_blank" rel="noopener">四</a></p>
+</blockquote>
+<p>==约定：==</p>
+<p><em>命令  Y  （大写 Y）  即输入：Shift + y</em></p>
+<p><em>命令 c-v  即输入：Ctrl + v</em> </p>
+<h1 id="VIM的各种模式"><a href="#VIM的各种模式" class="headerlink" title="VIM的各种模式"></a>VIM的各种模式</h1><ul>
+<li>普通模式/命令模式（<strong>Normal Mode</strong>）</li>
+<li>插入模式（<strong>Insert Mode</strong>）</li>
+<li>覆盖模式（<strong>Replace Mode</strong>）</li>
+<li>可视模式（<strong>Visual Mode</strong>）</li>
+<li>可视行模式（<strong>Visual-Line Mode</strong>）</li>
+<li>可视块模式（<strong>Visual-Block Mode</strong>）</li>
+</ul>
+<h3 id="各种模式之间的切换"><a href="#各种模式之间的切换" class="headerlink" title="各种模式之间的切换"></a>各种模式之间的切换</h3><ul>
+<li>其他任何模式下都可以使用<code>Esc</code> 切换到 <strong>普通模式（Normal Mode）</strong></li>
+<li>普通模式下：输入<code>R</code> 切换到 <strong>覆盖模式（Replace Mode）</strong>  （<code>r</code> 替换单个字符，例如：<code>ra</code>，将当前光标处的字符替换为a）</li>
+<li>普通模式下：输入<code>v</code>, <code>V</code>，<code>c-v</code> 切换到 <strong>可视模式（Visual Mode）</strong><ul>
+<li><code>v</code> 以<strong>字符</strong>为单位选择, 选中光标所在的字符, （结合<strong>上下左右</strong>可以选取更多）</li>
+<li><code>V</code> 以<strong>行</strong>为单位选择, 选中光标所在行, （结合 <strong>上下</strong> 可以选取多行）</li>
+<li><code>c-v</code> ，结合<strong>上下左右</strong>，可以选中一个矩阵块。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>普通模式下，切换到 <strong>插入模式（Insert Mode）</strong> 的方法：</p>
+<ul>
+<li><code>a</code> 在当前<strong>光标之后</strong>插入内容</li>
+<li><code>A</code> 在当前<strong>行尾</strong>插入内容</li>
+<li><code>i</code> 在当前<strong>光标之前</strong>插入内容</li>
+<li><code>I</code> 在当前<strong>行首</strong>插入内容</li>
+<li><code>o</code> <strong>向下</strong>插入新的一行，并进入插入模式</li>
+<li><code>O</code> <strong>向上</strong>插入新的一行，并进入插入模式</li>
+<li><code>cc</code> （双击c）删除当前行，并进入插入模式</li>
+<li><code>C</code> <strong>删除</strong>从<strong>当前光标处</strong>到<strong>行尾</strong>的所有字符，并进入插入模式</li>
+<li><code>s</code> 删除当前光标处的字符，并进入插入模式</li>
+<li><code>S</code> 删除当前行，并进入插入模式 （感觉和<code>cc</code>没有区别）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">+-----------+  i,I,a,A,o,O,cc,C,s,S +-----------+</span><br><span class="line">| Normal    +----------&gt;------------+ Insert    |</span><br><span class="line">| mode      |                       | mode      |</span><br><span class="line">|           +----------<span class="xml"><span class="tag">&lt;<span class="name">------------+</span>           |</span></span></span><br><span class="line"><span class="xml">+-+---+-----+        <span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>          +-----------+</span><br><span class="line"><span class="code">    |  |    \  \   </span></span><br><span class="line"><span class="code">    |  |     \  \</span></span><br><span class="line"><span class="code">    |  |      \  \</span></span><br><span class="line"><span class="code">    |  |       \  \</span></span><br><span class="line">v,  |  |        \  v  R, r</span><br><span class="line">V   V  ^ <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>   \  \</span><br><span class="line">c-v |  |    <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span> ^  \</span><br><span class="line"><span class="code">    |  |           \  \</span></span><br><span class="line"><span class="code">    |  |            \  \</span></span><br><span class="line"><span class="code">    |  |             \  \</span></span><br><span class="line">+---+---+----+      +---+---+----+</span><br><span class="line">| Visual     |      | Replace    |</span><br><span class="line">| mode       |      | mode       |</span><br><span class="line">+------------+      +------------+</span><br></pre></td></tr></table></figure>
+
+<p>在<strong>普通模式</strong>下，我们输入的字符被当做命令去执行。在<strong>插入模式</strong>和<strong>覆盖模式</strong>下，我们输入的字符就是我们编辑的内容。在<strong>可视模式</strong>下，我们可以选中内容，选中后，可以继续输入命令，对选中的内容进行操作。</p>
+<h3 id="VIM-按键功能总览图"><a href="#VIM-按键功能总览图" class="headerlink" title="VIM 按键功能总览图"></a>VIM 按键功能总览图</h3><p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/vi-vim-cheat-sheet.gif" alt="vi-vim-cheat-sheet"></p>
+<p>注：注意区分各个按键的颜色。Operator和Motion的颜色不一样。</p>
+<h1 id="Count-Operator-Count-Motion"><a href="#Count-Operator-Count-Motion" class="headerlink" title="{Count}Operator{Count}Motion"></a>{Count}Operator{Count}Motion</h1><h3 id="首先，看看我们有哪些Operators"><a href="#首先，看看我们有哪些Operators" class="headerlink" title="首先，看看我们有哪些Operators"></a>首先，看看我们有哪些Operators</h3><p>下面列出一些常用的，更多内容参考自<a href="http://vimdoc.sourceforge.net/htmldoc/motion.html#operator" target="_blank" rel="noopener">这里</a>。</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>d</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>c</td>
+<td>change</td>
+</tr>
+<tr>
+<td>y</td>
+<td>yank</td>
+</tr>
+<tr>
+<td>=</td>
+<td>indent</td>
+</tr>
+</tbody></table>
+<h3 id="其次，看看我们有哪些Motions"><a href="#其次，看看我们有哪些Motions" class="headerlink" title="其次，看看我们有哪些Motions"></a>其次，看看我们有哪些Motions</h3><p>下面列出一些常用的，上（k）下（j）左（h）右（l），下一个单词（w/W），上一个单词（b/B）。还有很多各式各样的Motion，参考<a href="http://vimdoc.sourceforge.net/htmldoc/motion.html" target="_blank" rel="noopener">这里</a>。</p>
+<table>
+<thead>
+<tr>
+<th>Motion</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$</td>
+<td>end of line</td>
+</tr>
+<tr>
+<td>0</td>
+<td>first character of line</td>
+</tr>
+<tr>
+<td>f{char}</td>
+<td>当前行，向右查找字符，光标跳到该字符。（inclusive）</td>
+</tr>
+<tr>
+<td>F{char}</td>
+<td>当前行，向左查找字符，光标跳到该字符。（exclusive）</td>
+</tr>
+<tr>
+<td>t{char}</td>
+<td>当前行，向右查找字符，光标跳到该字符之前。（inclusive）</td>
+</tr>
+<tr>
+<td>T{char}</td>
+<td>当前行，向左查找字符，光标跳到该字符之后。（exclusive）</td>
+</tr>
+<tr>
+<td>{number}gg</td>
+<td>光标跳到第number行，如果不输入number，就是跳到首行</td>
+</tr>
+<tr>
+<td>G</td>
+<td>光标跳到文件尾行</td>
+</tr>
+<tr>
+<td>H</td>
+<td>跳转到当前屏幕的顶行</td>
+</tr>
+<tr>
+<td>L</td>
+<td>跳转到当前屏幕的底行</td>
+</tr>
+</tbody></table>
+<p>注：</p>
+<ol>
+<li>光标在字符间移动，有两种模式：inclusive 和 exclusive 两种，区别是：是否包含最后一个字符。详见<a href="http://vimdoc.sourceforge.net/htmldoc/motion.html#inclusive" target="_blank" rel="noopener">这里</a></li>
+</ol>
+<h3 id="Operator-和-Motion-的组合：-Count-Operator-Count-Motion"><a href="#Operator-和-Motion-的组合：-Count-Operator-Count-Motion" class="headerlink" title="Operator 和 Motion 的组合：{Count}Operator{Count}Motion"></a>Operator 和 Motion 的组合：{Count}Operator{Count}Motion</h3><blockquote>
+<p>The motion commands can be used after an operator command, to have the command operate on the text that was moved over.  That is the text between the cursor position before and after the motion.  Operators are generally used to delete or change text. If the motion includes a count and the operator also had a count before it, the two counts are multiplied. For example: “2d3w” deletes six words.</p>
+<p>一个操作后面跟上一个动作，达到的效果是：<strong>在动作前后覆盖的内容上执行那个操作</strong>。</p>
+</blockquote>
+<p>这是一个非常强大的功能，可以自己尝试各种组合，打开属于自己的世界。<br>举一些例子：</p>
+<ol>
+<li><code>d2j</code> <strong>类似的命令我就经常使用到</strong> ，2j 光标会从当前行向下移动两行（光标扫过三行），d 表示删除。所以该命令会删除三行内容（包括当前行）。</li>
+<li><code>y2w</code> 2w 光标会向后跳两个单词，y 表示复制。所以这个命令会复制从当前光标开始出的两个单词。</li>
+<li><code>yfa</code> fa 会找到字符a，并将光标跳到该字符处。所以这个命令会从当前光标处一直复制到字符a。注意：实际我发现：<code>f</code> 只会在当前行查找。</li>
+<li><code>gUw</code> gU 是一个operator，表示将字符换成大写，w 移动一个单词。所以这个命令会将当前单词换成大写（当然也是从当前光标处开始）。</li>
+<li><code>cw</code> 删除当前单词（当然也是从当前光标处开始），并进入插入模式。</li>
+<li><code>ci)</code> <strong>这个我就经常使用到</strong>， 删除 （） 里的内容并进入插入模式，类似的命令还有<code>ci&quot;</code> ：删除 双引号之间的内容并进入插入模式。需要说明的是：删除不是从光标处开始的，而是将（）内，或者 “” 内的内容都删除。更强大的是，括号里的内容跨行也可以。</li>
+<li><code>ct\</code> <strong>这个我也经常使用到</strong>，删除从当前光标处开始直到字符 <code>\</code> 之前的内容，不能跨行。</li>
+</ol>
+<h3 id="查找-和-替换"><a href="#查找-和-替换" class="headerlink" title="查找 和 替换"></a>查找 和 替换</h3><p>查找：</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Func</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/</td>
+<td>向下查找字符串</td>
+</tr>
+<tr>
+<td>?</td>
+<td>向上查找字符串</td>
+</tr>
+<tr>
+<td>*</td>
+<td>向后查找当前光标所在单词</td>
+</tr>
+<tr>
+<td>#</td>
+<td>向前查找当前光标所在单词</td>
+</tr>
+<tr>
+<td>n</td>
+<td>跳到下一个匹配处</td>
+</tr>
+<tr>
+<td>N</td>
+<td>跳到上一个匹配处</td>
+</tr>
+</tbody></table>
+<p>替换：</p>
+<ul>
+<li><code>:m,n s/oldstring/newstring/g</code> 替换字符串  （m,n 指定替换从m行到n行）</li>
+<li><code>:.,$ s/oldstring/newstring/g</code></li>
+<li><code>:% s/oldstring/newstring/g</code></li>
+</ul>
+<blockquote>
+<p><code>.</code>表示当前行</p>
+<p><code>%</code> 表示所有行</p>
+<p><code>$</code> 表示文件最后</p>
+<p><code>g</code> 表示全局替换，若无g则只替换每行找到的第一个字符串</p>
+<p>如果替换字符串中有/，可以使用+ #作为分隔符</p>
+</blockquote>
+<h1 id="自定义快捷键实现小功能"><a href="#自定义快捷键实现小功能" class="headerlink" title="自定义快捷键实现小功能"></a>自定义快捷键实现小功能</h1><h3 id="LEADER-键"><a href="#LEADER-键" class="headerlink" title="LEADER 键"></a>LEADER 键</h3><p>LEADER键简单的说就是一个前缀键，默认是 <code>\</code>，在上上面的图中，可以看到：<code>\</code> 是 not used。我们可以将 LEADER键+其他的键，组合成自己想要的快捷键。我们也可以将LEADER键重新map成其他更好按的键位，比如空格。方法是：<code>let mapleader=&quot; &quot;</code> 。</p>
+<h3 id="自定义分屏快捷键"><a href="#自定义分屏快捷键" class="headerlink" title="自定义分屏快捷键"></a>自定义分屏快捷键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; split the screens to up (horizontal), </span><br><span class="line">&quot;                    down (horizontal), </span><br><span class="line">&quot;                    left (vertical), </span><br><span class="line">&quot;                    right (vertical).</span><br><span class="line">map sj :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;:set splitbelow&lt;CR&gt;</span><br><span class="line">map sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br><span class="line">map sh :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;:set splitright&lt;CR&gt;</span><br><span class="line">map sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+
+<p>分屏后，可用通过 <code>:edit filename</code> 来打开新的文件。</p>
+<p>我们还可以自己定义调整分屏大小的快捷键，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; Resize splits with arrow keys</span><br><span class="line">map &lt;up&gt; :res +2&lt;CR&gt;</span><br><span class="line">map &lt;down&gt; :res -2&lt;CR&gt;</span><br><span class="line">map &lt;left&gt; :vertical resize-2&lt;CR&gt;</span><br><span class="line">map &lt;right&gt; :vertical resize+2&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/split-screen.gif" alt="split-screen"></p>
+<h3 id="自定义占位符"><a href="#自定义占位符" class="headerlink" title="自定义占位符"></a>自定义占位符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot; Press space twice to jump to the next &#39;&lt;++&gt;&#39; and edit it</span><br><span class="line">noremap &lt;LEADER&gt;&lt;LEADER&gt; &lt;Esc&gt;&#x2F;&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4i</span><br></pre></td></tr></table></figure>
+
+<p>这样设置之后，我在普通模式下，输入按下两次空格键后，会自动查找下一个’&lt;++&gt;’，删除它，并进入写入模式。</p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/place-holder.gif" alt="place-holder"></p>
+<h1 id="插件的使用"><a href="#插件的使用" class="headerlink" title="插件的使用"></a>插件的使用</h1><p>我使用的vim插件管理器是vim-plug。安装和使用参考<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">这里</a>。</p>
+<h1 id="Little-Tips"><a href="#Little-Tips" class="headerlink" title="Little Tips"></a>Little Tips</h1><h3 id="norm"><a href="#norm" class="headerlink" title=":norm"></a>:norm</h3><p>可视行模式下，选中行后，可以输入<code>:normal</code> 或者 <code>:norm</code> 可以对每一行执行普通模式下的 commands 命令。</p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-block-norm.gif" alt="visual-block-norm"></p>
+<h3 id="set-filetype-xxx"><a href="#set-filetype-xxx" class="headerlink" title=":set filetype=xxx"></a>:set filetype=xxx</h3><p>vim 打开文件时，是根据文件的后缀来区分文件类型，显示出不同的语法高亮。但是有时文件名没有后缀，vim 识别不出文件类型，为了让语法高亮显示正确，我们需要手动设置文件类型。命令如：<code>:set filetype=make</code> <code>:set filetype=python</code> <code>:set filetype=vim</code> 等。</p>
+<p>To see the list of language types available, check the <code>$VIMRUNTIME/syntax/</code> directory. </p>
+<p>If you want the power of syntax highlighting for any Unix shell output, just pipe it to Vim. For example, <code>svn diff | vim -R -</code>.  Notice the dash in the end which tells Vim that it should read text from its standard input.</p>
+<h3 id="map-与-noremap-的区别"><a href="#map-与-noremap-的区别" class="headerlink" title="map 与 noremap 的区别"></a>map 与 noremap 的区别</h3><p>map 是 vim 很强大的功能，可以让使用 vim 变的更顺手。除非自己明确的知道映射的结果，否则，没有特殊原因的情况下，应该使用 <code>noremap</code> ，胡乱使用 <code>map</code> 可能会有一些意想不到的结果。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="keyword">b</span> <span class="keyword">a</span></span><br><span class="line"><span class="keyword">map</span> <span class="keyword">c</span> <span class="keyword">b</span></span><br></pre></td></tr></table></figure>
+
+<p>在有上面两个映射的情况下，如果按下 c 键，vim 首先将 c 键映射为 b 键，然后 vim 会再去检查 b 键有没有被映射，此时，b 键又会被映射为 a  键。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="keyword">b</span> <span class="keyword">a</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="keyword">c</span> <span class="keyword">b</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>noremap</code> 时，当按下 c 键会被映为 b 键，此时 vim 不会再去检查 b 键是否有映射，而是认为最终希望输入的就是 b 键。 </p>
+<p><strong>其它：</strong> </p>
+<ol>
+<li><p>显示行号</p>
+<blockquote>
+<p>:set nu (不显示行号: set nonu)</p>
+<p>需要总是显示行号时：将命令追加到~/.vim/vimrc文件中</p>
+</blockquote>
+</li>
+<li><p>并列代开其它文件</p>
+<blockquote>
+<p>:vsp <filename></p>
+</blockquote>
+</li>
+<li><p>并列打开的文件之间切换</p>
+<blockquote>
+<p>Ctrl + w</p>
+</blockquote>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Func</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{number}gg</td>
+<td>光标跳到第number行，如果不输入number，就是跳到首行</td>
+</tr>
+<tr>
+<td>G</td>
+<td>光标跳到文件尾行</td>
+</tr>
+<tr>
+<td>{n}dd</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>{n}yy</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td>ZQ</td>
+<td>不保存并退出</td>
+</tr>
+<tr>
+<td>zz</td>
+<td>将当前行显示在屏幕中间</td>
+</tr>
+</tbody></table>
+<h1 id="遇到的问题记录"><a href="#遇到的问题记录" class="headerlink" title="遇到的问题记录"></a>遇到的问题记录</h1><ul>
+<li>Visual Mode 下，白色字看不见的问题</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-1.jpg" alt="visual-wt-1"></p>
+<p>Visual mode 选中后，就成下面的样子了：</p>
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-2.jpg" alt="visual-wt-2"></p>
+<p>这是因为高亮颜色设置不对，<code>:highlight&lt;CR&gt;</code> 命令可查看所以高亮的颜色配置。</p>
+<p>By the way，我的终端软件是Xshell6(Home)，也有可能和终端软件有关系。那我们就改了试试，看能不能生效。</p>
+<p>改前的配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Visual         xxx term=reverse ctermbg=7 guibg=LightGrey</span><br></pre></td></tr></table></figure>
+
+<p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:hi Visual term=reverse cterm=reverse ctermbg=none guibg=none</span><br></pre></td></tr></table></figure>
+
+<p>改后的配置和效果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Visual         xxx term=reverse cterm=reverse guibg=none</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-3.jpg" alt="visual-wt-3"></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>VIM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 常用命令记录</title>
     <url>/2019/12/25/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h3 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h3><p>Linux上的安装：</p>
@@ -40,6 +335,39 @@
     <title>Linux-MTD-Subsystem</title>
     <url>/2019/12/25/Linux-MTD-Subsystem/</url>
     <content><![CDATA[<p><a href="http://www.linux-mtd.infradead.org/doc/general.html" target="_blank" rel="noopener">资料来源</a></p>
+<p>MTD(Memory Technology Devices)子系统提供了一个原始Flash设备的抽象层。对于不同类型的Flash设备，MTD子系统向上提供了相同的API。比如：NAND、OneNAND、NOR、AG-AND、ECC’d NOR 等等。</p>
+<p>MTD子系统并不管理块设备，比如：MMC, eMMC, SD, CompactFlash 等等都属于块设备。这些块设备内部也有原始的Flash，另外芯片内部也有FTL(Flash Translation Layer)，让这些设备对外呈现出块设备的特性。</p>
+<p>更多关于<a href="http://www.linux-mtd.infradead.org/doc/ubifs.html#L_raw_vs_ftl" target="_blank" rel="noopener">Raw Flash 和 FTL Devices</a> 的对比。</p>
+<p>注意：SSD, MMC, eMMC, RS-MMC, SD, mini-SD, micro-SD, USB flash drive, CompactFlash, MemoryStick, MemoryStick Micro, and other FTL devices are <strong>block devices</strong>, not raw flash devices.</p>
+<p>块设备和MTD设备的区别：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Block device</strong></th>
+<th><strong>MTD device</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consists of sectors</td>
+<td>Consists of eraseblocks</td>
+</tr>
+<tr>
+<td>Sectors are small (512, 1024 bytes)</td>
+<td>Eraseblocks are larger (typically 128KiB)</td>
+</tr>
+<tr>
+<td>Maintains 2 main operations: <strong>read sector</strong> and <strong>write sector</strong></td>
+<td>Maintains 3 main operations: <strong>read from eraseblock</strong>, <strong>write to eraseblock</strong>, and <strong>erase eraseblock</strong></td>
+</tr>
+<tr>
+<td>Bad sectors are re-mapped and hidden by hardware (at least in modern LBA hard drives); in case of FTL devices it is the responsibility of FTL to provide this</td>
+<td>Bad eraseblocks are not hidden and should be dealt with in software</td>
+</tr>
+<tr>
+<td>Sectors are devoid of the wear-out property (in FTL devices it is the responsibility of FTL to provide this)</td>
+<td>Eraseblocks wear-out and become bad and unusable after about 103 (for MLC NAND) - 105 (NOR, SLC NAND) erase cycles</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>Linux</category>
