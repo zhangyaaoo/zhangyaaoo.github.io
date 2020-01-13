@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>All categories | ZY&#39;s Blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="All categories | ZY&#39;s Blog">
+  <title>ubuntu上搭建dokuwiki | ZY&#39;s Blog</title>
+  <meta name="keywords" content=" dokuwiki , ubuntu ">
+  <meta name="description" content="ubuntu上搭建dokuwiki | ZY&#39;s Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -314,24 +314,38 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-ubuntu上搭建dokuwiki" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">All categories</h1>
+        <h1 class="article-title">ubuntu上搭建dokuwiki</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a  data-rel="Tools">Tools</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color4">dokuwiki</a>
+            
+            <a class="color2">ubuntu</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-24 22:57:28'>2019-12-24 22:57</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-13 20:20:32'>2020-01-13 20:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:568</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -350,7 +364,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装web服务器和PHP"><span class="toc-text">安装web服务器和PHP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载dokuwiki"><span class="toc-text">下载dokuwiki</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置权限"><span class="toc-text">设置权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#将目录移出根文档"><span class="toc-text">将目录移出根文档</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#data-目录"><span class="toc-text">data 目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#conf-目录"><span class="toc-text">conf 目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bin-目录"><span class="toc-text">bin 目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#inc-目录"><span class="toc-text">inc 目录</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -366,13 +380,73 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><a href="https://www.dokuwiki.org/manual" target="_blank" rel="noopener">dokuwiki 官方使用手册</a></p>
+<blockquote>
+<p>搭建环境：</p>
+<p>ubuntu（16.04）</p>
+</blockquote>
+<h3 id="安装web服务器和PHP"><a href="#安装web服务器和PHP" class="headerlink" title="安装web服务器和PHP"></a>安装web服务器和PHP</h3><pre><code class="bash">sudo apt-get install apache2 php7.0 php7.0-fpm php7.0-cli php-apcu php7.0-gd php7.0-xml php7.0-curl php7.0-json php7.0-mcrypt php7.0-cgi libapache2-mod-php7.0 php-patchwork-utf8</code></pre>
+<h3 id="下载dokuwiki"><a href="#下载dokuwiki" class="headerlink" title="下载dokuwiki"></a>下载dokuwiki</h3><p><a href="https://www.dokuwiki.org/dokuwiki" target="_blank" rel="noopener">下载链接</a></p>
+<p>解压得到的文件夹 dokuwiki 放到 /var/www/html/ 下，如：</p>
+<pre><code class="bash">zyao@ubuntu:~$ ls /var/www/html/
+dokuwiki  index.html
+zyao@ubuntu:~$ ls /var/www/html/dokuwiki/
+bin  conf  COPYING  data  doku.php  feed.php  inc  index.php  lib  README  vendor  VERSION
+zyao@ubuntu:~$</code></pre>
+<p>更改文件夹权限，如：</p>
+<pre><code class="bash">cd /var/www/html/dokuwiki
+sudo chown -R www-data:www-data data conf</code></pre>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>浏览器输入网址：<code>http://你的服务器IP/dokuwiki/install.php</code></p>
+<h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><pre><code class="bash"># 1、
+sudo mv data /home/zyao/.dokuwiki/ -f
+# 2、追加一行内容：$conf[&#39;savedir&#39;] = &#39;/home/yourname/data/&#39;; 到conf/local.php
+# 3、
+mv conf /home/zyao/.dokuwiki/ -f
+cd inc/
+vi preload.php
+mv bin /home/zyao/.dokuwiki/ -f</code></pre>
+<h4 id="将目录移出根文档"><a href="#将目录移出根文档" class="headerlink" title="将目录移出根文档"></a>将目录移出根文档</h4><p>为了避免任何对上述目录的访问，最安全的方法就是把它们从 Web 服务所谓的“根文档”中移出来。</p>
+<h5 id="data-目录"><a href="#data-目录" class="headerlink" title="data 目录"></a>data 目录</h5><ul>
+<li>从根文档中移出 “data” 目录（和它所有的内容）</li>
+<li>编辑 [[config:savedir]] 设置，使它指向 “data” 目录的新位置。</li>
+</ul>
+<p>例如，如果把 “data” 目录移动到 “/home/yourname/data”，添加以下这一行到 “conf/local.php”:</p>
+<pre><code class="bash">  $conf[&#39;savedir&#39;] = &#39;/home/yourname/data/&#39;;</code></pre>
+<h5 id="conf-目录"><a href="#conf-目录" class="headerlink" title="conf 目录"></a>conf 目录</h5><ul>
+<li>从根文档中移出 “conf” 目录（和它所有的内容）</li>
+<li>在 “inc” 目录内创建一个名为 preload.php 的文件,设置 “DOKU_CONF” 定义并使它指向 “conf” 目录的新地址。</li>
+</ul>
+<p>例如，如果把 “conf” 目录移动到 “/home/yourname/conf”,创建以下的 “inc/preload.php”文件：</p>
+<p>&lt;code php inc/preload.php&gt;</p>
+<pre><code class="php">&lt;?php
+
+define(&#39;DOKU_CONF&#39;,&#39;/home/yourname/conf/&#39;);
+&lt;/code&gt;</code></pre>
+<h5 id="bin-目录"><a href="#bin-目录" class="headerlink" title="bin 目录"></a>bin 目录</h5><p>bin 目录包含了命令行工具。如果你没有 shell 可以访问你的服务器，你可以简单的删除该目录和它的内容。否则只要把它移出文档根即可。不需要更多的配置工作。</p>
+<h5 id="inc-目录"><a href="#inc-目录" class="headerlink" title="inc 目录"></a>inc 目录</h5><p>从文档根中移出该目录，直到目前还没有简单的方法。但是因为它不包含任何的敏感数据，所以不值得努力尝试移出它了。</p>
+<p><a href="https://www.dokuwiki.org/start?id=zh:security" target="_blank" rel="noopener">参考这里</a></p>
+<p>参考博客：</p>
+<p><a href="https://blog.csdn.net/wszll_Alex/article/details/80250249" target="_blank" rel="noopener">参考一</a>、<a href="https://linux.cn/article-8178-1.html" target="_blank" rel="noopener">参考二</a>、<a href="https://my.oschina.net/xiangxw/blog/36233" target="_blank" rel="noopener">参考三</a>、<a href="https://blog.csdn.net/boyStray/article/details/77113945" target="_blank" rel="noopener">dokuwiki升级</a></p>
+<p><strong>效果展示：</strong><br><img src="https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/misc/2019-10-15_152955-dokuwiki-mainpage.png" alt=""></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的内容批评指正. 可以邮件至 zh.yao@foxmail.com </span>
     </div>
 </article>
 
 
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>ubuntu上搭建dokuwiki</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">568</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="ZY">ZY</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-13, 20:00:38</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-13, 20:20:32</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/13/ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAdokuwiki/" title="ubuntu上搭建dokuwiki">http://yoursite.com/2020/01/13/ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAdokuwiki/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
 
 
 
