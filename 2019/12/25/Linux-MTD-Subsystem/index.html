@@ -23,7 +23,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -129,7 +129,7 @@
     
         
             
-            <li><div data-rel="Linux">Linux<small>(1)</small></div>
+            <li><div data-rel="Hexo">Hexo<small>(2)</small></div>
                 
             </li>
             
@@ -137,7 +137,7 @@
     
         
             
-            <li><div data-rel="Hexo">Hexo<small>(2)</small></div>
+            <li><div data-rel="Linux">Linux<small>(1)</small></div>
                 
             </li>
             
@@ -154,7 +154,7 @@
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="8">
-<input type="hidden" id="yelog_site_word_count" value="7.2k">
+<input type="hidden" id="yelog_site_word_count" value="7.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -204,6 +204,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a class="color5">Hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color1">Linux</a>
     </li>
     
@@ -212,19 +216,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a class="color5">Hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">VIM</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a class="color4">dokuwiki</a>
     </li>
     
     <li class="article-tag-list-item">
         <a class="color2">ubuntu</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">VIM</a>
     </li>
     
     <div class="clearfix"></div>
@@ -340,12 +340,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-25 23:16:02'>2019-12-25 18:08</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-15 23:18:23'>2019-12-25 18:08</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:302</span>
+        <span>字数:925</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -364,7 +364,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MTD-device-amp-block-device-amp-char-device"><span class="toc-text">MTD device &amp; block device &amp; char device</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MTD-NAND-Driver-Programming-Interface"><span class="toc-text">MTD NAND Driver Programming Interface</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -382,10 +382,15 @@
       
         <p><a href="http://www.linux-mtd.infradead.org/doc/general.html" target="_blank" rel="noopener">资料来源</a></p>
 <p>MTD(Memory Technology Devices)子系统提供了一个原始Flash设备的抽象层。对于不同类型的Flash设备，MTD子系统向上提供了相同的API。比如：NAND、OneNAND、NOR、AG-AND、ECC’d NOR 等等。</p>
-<p>MTD子系统并不管理块设备，比如：MMC, eMMC, SD, CompactFlash 等等都属于块设备。这些块设备内部也有原始的Flash，另外芯片内部也有FTL(Flash Translation Layer)，让这些设备对外呈现出块设备的特性。</p>
+<p>MTD子系统并不管理块设备，比如：MMC, eMMC, SD, CompactFlash 等等都属于块设备。这些块设备内部也有原始的Flash，但芯片内部有FTL(Flash Translation Layer)，这让这些设备对外呈现出块设备的特性。</p>
 <p>更多关于<a href="http://www.linux-mtd.infradead.org/doc/ubifs.html#L_raw_vs_ftl" target="_blank" rel="noopener">Raw Flash 和 FTL Devices</a> 的对比。</p>
 <p>注意：SSD, MMC, eMMC, RS-MMC, SD, mini-SD, micro-SD, USB flash drive, CompactFlash, MemoryStick, MemoryStick Micro, and other FTL devices are <strong>block devices</strong>, not raw flash devices.</p>
-<p>块设备和MTD设备的区别：</p>
+<h1 id="MTD-device-amp-block-device-amp-char-device"><a href="#MTD-device-amp-block-device-amp-char-device" class="headerlink" title="MTD device &amp; block device &amp; char device"></a>MTD device &amp; block device &amp; char device</h1><blockquote>
+<p><strong>MTD is neither a block nor a char device.</strong> </p>
+</blockquote>
+<p>在老的Unix系统中，只认识块设备和字符设备，<strong>字符设备</strong>是键盘和鼠标之类的东西。你能从字符设备中读取当前的数据，但是字符设备没有大小，不能查找（seek）。<strong>块设备</strong>有固定的大小，并且可以被查找，块设备被组织为一个个的块，一个块通常是512字节。</p>
+<p>Flash既不是字符设备也不是块设备，它虽然看起来更像块设备，但是与块设备还是有区别：<strong>块设备不区分写和擦</strong>。所以有了MTD设备。</p>
+<p><strong>块设备和MTD设备的区别</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -414,6 +419,18 @@
 <td>Eraseblocks wear-out and become bad and unusable after about 103 (for MLC NAND) - 105 (NOR, SLC NAND) erase cycles</td>
 </tr>
 </tbody></table>
+<p><strong>MTD subsystem has the following interfaces</strong>.</p>
+<ul>
+<li>MTD character devices - usually referred to as <code>/dev/mtd0</code>, <code>/dev/mtd1</code>, and so on. These character devices provide I/O access to the raw flash. They support a number of <code>ioctl</code> calls for erasing eraseblocks, marking them as bad or checking if an eraseblock is bad, getting information about MTD devices, etc.</li>
+<li>The <code>sysfs</code> interface is relatively newer and it provides full information about each MTD device in the system. This interface is easily extensible and developers are encouraged to use the <code>sysfs</code> interface instead of older <code>ioctl</code> or <code>/proc/mtd</code> interfaces, when possible. The <code>sysfs</code> interface for the mtd subsystem is documentated in the kernel, and currently can be found at <code>Documentation/ABI/testing/sysfs-class-mtd</code>.</li>
+<li>The <code>/proc/mtd</code> proc file system file provides general MTD information. 这是遗留下来的接口，sysfs接口提供了更多的信息。</li>
+</ul>
+<p><strong>The mtdblock driver</strong></p>
+<p>The <code>mtdblock</code> driver 在MTD设备之上模拟块设备。它甚至没有坏块处理，因此它实际上不适用于NAND Flash。它的工作方式是将整个Flash块缓存在RAM中，有修改的请求时，先擦除整个块，并写回修改后的内容。这意味着the <code>mtdblock</code> driver不会尝试进行任何优化，并且在读、擦、回写的过程中，如果突然断电，将丢失大量数据。而且，the <code>mtdblock</code> driver不执行任何耗损均衡或位翻转处理。</p>
+<p>人们通常将mtdblock视为FTL层，并尝试使用mtdblock在Raw Flash之上使用基于块设备的文件系统。在大多数情况下，这是错误的。换句话说，请不要使用mtdblock，除非您确切知道自己在做什么。就我自己在实际使用中而言，我在mtdblock设备上挂载过jffs2和squashfs。</p>
+<p>There is also a read-only version of this driver, 主要用在内存紧张的场合. However, just like the R/W version of the driver, there is no wear-levelling and bit-flips handling.</p>
+<p>Instead of using this old driver, you may check the R/O block device emulation provided by <code>UBI</code> useful. Please refer to the <a href="http://www.linux-mtd.infradead.org/doc/ubi.html#L_ubiblock" target="_blank" rel="noopener">UBI section</a> for more details.</p>
+<h1 id="MTD-NAND-Driver-Programming-Interface"><a href="#MTD-NAND-Driver-Programming-Interface" class="headerlink" title="MTD NAND Driver Programming Interface"></a>MTD NAND Driver Programming Interface</h1><p><a href="http://www.linux-mtd.infradead.org/tech/mtdnand/book1.html" target="_blank" rel="noopener">Online Home Page</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的内容批评指正. 可以邮件至 zh.yao@foxmail.com </span>
@@ -424,10 +441,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Linux-MTD-Subsystem</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">302</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">925</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="ZY">ZY</a></p>
     <p><span class="copy-title">发布时间:</span>2019-12-25, 18:08:18</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-25, 23:16:02</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-15, 23:18:23</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/25/Linux-MTD-Subsystem/" title="Linux-MTD-Subsystem">http://yoursite.com/2019/12/25/Linux-MTD-Subsystem/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -472,7 +489,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GCC','#Git','#嵌入式','#IIC','#Linux','#MTD Subsystem','#Hexo','#VIM','#dokuwiki','#ubuntu',],
+            'data': ['#GCC','#Git','#嵌入式','#IIC','#Hexo','#Linux','#MTD Subsystem','#dokuwiki','#ubuntu','#VIM',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
