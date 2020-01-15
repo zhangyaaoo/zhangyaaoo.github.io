@@ -35,3 +35,25 @@ Flash既不是字符设备也不是块设备，它虽然看起来更像块设备
 | Bad sectors are re-mapped and hidden by hardware (at least in modern LBA hard drives); in case of FTL devices it is the responsibility of FTL to provide this | Bad eraseblocks are not hidden and should be dealt with in software |
 | Sectors are devoid of the wear-out property (in FTL devices it is the responsibility of FTL to provide this) | Eraseblocks wear-out and become bad and unusable after about 103 (for MLC NAND) - 105 (NOR, SLC NAND) erase cycles |
 
+**MTD subsystem has the following interfaces**.
+
+- MTD character devices - usually referred to as `/dev/mtd0`, `/dev/mtd1`, and so on. These character devices provide I/O access to the raw flash. They support a number of `ioctl` calls for erasing eraseblocks, marking them as bad or checking if an eraseblock is bad, getting information about MTD devices, etc.
+- The `sysfs` interface is relatively newer and it provides full information about each MTD device in the system. This interface is easily extensible and developers are encouraged to use the `sysfs` interface instead of older `ioctl` or `/proc/mtd` interfaces, when possible. The `sysfs` interface for the mtd subsystem is documentated in the kernel, and currently can be found at `Documentation/ABI/testing/sysfs-class-mtd`.
+- The `/proc/mtd` proc file system file provides general MTD information. 这是遗留下来的接口，sysfs接口提供了更多的信息。
+
+**The mtdblock driver**
+
+The `mtdblock` driver 在MTD设备之上模拟块设备。它甚至没有坏块处理，因此它实际上不适用于NAND Flash。它的工作方式是将整个Flash块缓存在RAM中，有修改的请求时，先擦除整个块，并写回修改后的内容。这意味着the `mtdblock` driver不会尝试进行任何优化，并且在读、擦、回写的过程中，如果突然断电，将丢失大量数据。而且，the `mtdblock` driver不执行任何耗损均衡或位翻转处理。
+
+人们通常将mtdblock视为FTL层，并尝试使用mtdblock在Raw Flash之上使用基于块设备的文件系统。在大多数情况下，这是错误的。换句话说，请不要使用mtdblock，除非您确切知道自己在做什么。就我自己在实际使用中而言，我在mtdblock设备上挂载过jffs2和squashfs。
+
+There is also a read-only version of this driver, 主要用在内存紧张的场合. However, just like the R/W version of the driver, there is no wear-levelling and bit-flips handling.
+
+Instead of using this old driver, you may check the R/O block device emulation provided by `UBI` useful. Please refer to the [UBI section](http://www.linux-mtd.infradead.org/doc/ubi.html#L_ubiblock) for more details.
+
+
+
+# MTD NAND Driver Programming Interface
+
+[Online Home Page](http://www.linux-mtd.infradead.org/tech/mtdnand/book1.html)
+
