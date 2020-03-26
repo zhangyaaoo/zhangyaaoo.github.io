@@ -94,10 +94,27 @@ c-v |  |    <Esc> ^  \
 
 下面列出一些常用的，上（k）下（j）左（h）右（l），下一个单词（w/W），上一个单词（b/B）。还有很多各式各样的Motion，参考[这里](http://vimdoc.sourceforge.net/htmldoc/motion.html)。
 
+```markdown
+                     gg 
+                     ? 
+                    C-b 
+                     H 
+                     { 
+                     k 
+^  F  T  (  ge b  h     l  w  e  )  t  f  $ 
+                     j 
+                     } 
+                     L 
+                    C-f 
+                     / 
+                     G 
+```
+
 | Motion  | Function                                                |
 | ------- | ------------------------------------------------------- |
 | $       | end of line                                             |
 | 0       | first character of line                                 |
+| ^       | first non-blank character of the line                   |
 | f{char} | 当前行，向右查找字符，光标跳到该字符。（inclusive）     |
 | F{char} | 当前行，向左查找字符，光标跳到该字符。（exclusive）     |
 | t{char} | 当前行，向右查找字符，光标跳到该字符之前。（inclusive） |
@@ -105,7 +122,11 @@ c-v |  |    <Esc> ^  \
 | {number}gg | 光标跳到第number行，如果不输入number，就是跳到首行 |
 | G          | 光标跳到文件尾行                                   |
 | H          | 跳转到当前屏幕的顶行                               |
-| L          | 跳转到当前屏幕的底行                               |                                                      |
+| L          | 跳转到当前屏幕的底行                               |
+| w          | 下一个单词的开始                                   |
+| e          | 下一个单词的结尾                                   |
+| b          | 上一个单词的开始                                   |
+| ge         | 上一个单词的结尾                                   |
 
 注：
 
