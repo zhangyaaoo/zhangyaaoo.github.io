@@ -14,3 +14,16 @@
 - -C num 匹配行的上下num行都打印出来
 - -B num 匹配行的上num行也打印出来
 - -A num 匹配行的下num行也打印出来
+
+
+
+常用命令示例：
+
+```shell
+grep -rna 'scan_vol' . --include="*.[ch]"
+```
+
+在当前目录下的所有C文件和H文件中，查找字符串 'scan_vol'，其中：使用 -a 参数是因为有些文本文件会被grep识别为二进制文件。
+
+注意：这个命令在bash和zsh中都能正确执行，但是命令`grep -rna 'scan_vol' ./* --include=*.[ch]` 只能在bash中正确执行。
+
