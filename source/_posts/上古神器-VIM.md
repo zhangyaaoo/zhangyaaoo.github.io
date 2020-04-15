@@ -95,19 +95,19 @@ c-v |  |    <Esc> ^  \
 下面列出一些常用的，上（k）下（j）左（h）右（l），下一个单词（w/W），上一个单词（b/B）。还有很多各式各样的Motion，参考[这里](http://vimdoc.sourceforge.net/htmldoc/motion.html)。
 
 ```markdown
-                     gg 
-                     ? 
-                    C-b 
-                     H 
-                     { 
+                     gg   文件首行
+                     ?    向前搜索
+                    C-b   向前翻页
+                     H    屏幕顶部
+                     {    上一个段落
                      k 
 ^  F  T  (  ge b  h     l  w  e  )  t  f  $ 
                      j 
-                     } 
-                     L 
-                    C-f 
-                     / 
-                     G 
+                     }    下一个段落
+                     L    屏幕底部
+                    C-f   向后翻页
+                     /    向后搜索
+                     G    文件末行
 ```
 
 | Motion  | Function                                                |
