@@ -123,10 +123,10 @@ c-v |  |    <Esc> ^  \
 | G          | 光标跳到文件尾行                                   |
 | H          | 跳转到当前屏幕的顶行                               |
 | L          | 跳转到当前屏幕的底行                               |
-| w          | 下一个单词的开始                                   |
-| e          | 下一个单词的结尾                                   |
-| b          | 上一个单词的开始                                   |
-| ge         | 上一个单词的结尾                                   |
+| w（W）     | 下一个word（WORD）的开始 [word与WORD的区别](http://vimdoc.sourceforge.net/htmldoc/motion.html#word) |
+| e（E）       | 下一个word（WORD）的结尾                         |
+| b（B）       | 上一个word（WORD）的开始                         |
+| ge（gE）     | 上一个word（WORD）的结尾                         |
 
 注：
 
