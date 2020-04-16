@@ -27,3 +27,26 @@ grep -rna 'scan_vol' . --include="*.[ch]"
 
 注意：这个命令在bash和zsh中都能正确执行，但是命令`grep -rna 'scan_vol' ./* --include=*.[ch]` 只能在bash中正确执行。
 
+我们可以在/usr/local/bin目录下新建名为 `grepch` 的脚本，其中内容为：
+
+```shell
+grep --color -rna $1 . --include="*.[ch]"
+```
+
+相当于我们自己定义了一个命令 `grepch` ，接下来我们就可以使用这个命令了，如：
+
+```shell
+grepch 'CHIP_ID' # 或者
+grepch "CHIP_ID_*"
+```
+
+
+
+搜索时排除指定的目录：
+
+```shell
+grep --exclude-dir=\.svn --exclude-dir=\.git
+```
+
+
+
