@@ -75,7 +75,7 @@ git rm --cached filename
 git add <files>
 git commit -m 'log messages'
 
-# -a 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响
+# -a(add) 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响
 git commit -a -m 'made a change'
 
 # 查看 工作区的文件 相对于 暂存区的文件 的修改
