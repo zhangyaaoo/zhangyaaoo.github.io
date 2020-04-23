@@ -71,8 +71,15 @@ git rm --cached filename
 
 ### 添加修改到暂存区和本地提交
 
+修改一经`commit`，就安全的保存到了本地仓库中，很难将其丢失，特别是如果你定期的推送数据库到其它仓库的话。
+
 ```shell
-git add <files>
+# 添加文件到暂存区
+git add <files> ...
+# 或者使用下面的命令添加所有文件
+git add . # include untracked files
+
+# commit 只会提交 已暂存到暂存区的 修改到本地仓库
 git commit -m 'log messages'
 
 # -a(add) 选项只会暂存 修改 和 删除的 文件，对未跟踪的文件无影响
@@ -136,4 +143,13 @@ git branch --merged
 git branch --no-merged
 ```
 
+### 历史 回撤
+
+
+
+### 远程仓库 拉取 推送
+
+
+
+### 标签 别名
 
