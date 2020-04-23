@@ -90,6 +90,9 @@ git diff
 
 # 查看 暂存区的文件 相对于 已提交的文件 的修改
 git diff --staged
+
+# 检查空白错误 ( 行尾的空格、Tab 制表符，和行首空格后跟 Tab 制表符的行为 )
+git diff --check
 ```
 
 ### Git log  & status
@@ -143,11 +146,26 @@ git branch --merged
 git branch --no-merged
 ```
 
-### 历史 回撤
+### 历史 回撤 文件时光机
 
 
 
 ### 远程仓库 拉取 推送
+
+```shell
+# 列出已配置的远程仓库
+git remote -v
+
+# 查看某一个远程仓库的更多信息
+git remote show [remote-name] # eg：git remote show origin
+
+# 添加远程仓库
+git remote add <shortname> <url> 
+
+git fetch [remote-name]
+```
+
+
 
 
 
