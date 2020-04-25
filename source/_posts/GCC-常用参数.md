@@ -70,5 +70,5 @@ categories: 嵌入式
 
   在实际的运用过程中，发现对于CPU密集型的程序来说，增加优化级别能够大幅缩短执行时间。比如下面给升级镜像增加OOB区域的数据（制作烧录镜像）。
 
-  ![diff-Ox](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/make/diff-Ox.png)
+  ![diff-Ox](https://gitee.com/zhangyaaoo/blogpics/raw/master/make/diff-Ox.png)
 
