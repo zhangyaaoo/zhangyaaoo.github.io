@@ -101,8 +101,8 @@ theme: 3-hexo
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  #repo: https://gitee.com/zhangyaaoo/zhangyaaoo.git
-  repo: https://github.com/zhangyaaoo/zhangyaaoo.github.io.git
+  repo: https://gitee.com/zhangyaaoo/zhangyaaoo.git
+  #repo: https://github.com/zhangyaaoo/zhangyaaoo.github.io.git
   branch: master
 
 jsonContent:

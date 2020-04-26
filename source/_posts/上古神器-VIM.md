@@ -72,7 +72,7 @@ c-v |  |    <Esc> ^  \
 在**普通模式**下，我们输入的字符被当做命令去执行。在**插入模式**和**覆盖模式**下，我们输入的字符就是我们编辑的内容。在**可视模式**下，我们可以选中内容，选中后，可以继续输入命令，对选中的内容进行操作。
 
 ### VIM 按键功能总览图
-![vi-vim-cheat-sheet](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/vi-vim-cheat-sheet.gif)
+![vi-vim-cheat-sheet](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/vi-vim-cheat-sheet.gif)
 
 注：注意区分各个按键的颜色。Operator和Motion的颜色不一样。
 
@@ -212,7 +212,7 @@ map <left> :vertical resize-2<CR>
 map <right> :vertical resize+2<CR>
 ```
 
-![split-screen](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/split-screen.gif)
+![split-screen](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/split-screen.gif)
 
 
 
@@ -225,7 +225,7 @@ noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
 
 这样设置之后，我在普通模式下，输入按下两次空格键后，会自动查找下一个'<++>'，删除它，并进入写入模式。
 
-![place-holder](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/place-holder.gif)
+![place-holder](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/place-holder.gif)
 
 # 插件的使用
 
@@ -238,7 +238,7 @@ noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
 可视行模式下，选中行后，可以输入`:normal` 或者 `:norm` 可以对每一行执行普通模式下的 commands 命令。
 
 
-![visual-block-norm](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-block-norm.gif)
+![visual-block-norm](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/visual-block-norm.gif)
 
 
 
@@ -305,11 +305,11 @@ noremap c b
 
 - Visual Mode 下，白色字看不见的问题
 
-![visual-wt-1](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-1.jpg)
+![visual-wt-1](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/visual-wt-1.jpg)
 
 Visual mode 选中后，就成下面的样子了：
 
-![visual-wt-2](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-2.jpg)
+![visual-wt-2](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/visual-wt-2.jpg)
 
 这是因为高亮颜色设置不对，`:highlight<CR>` 命令可查看所以高亮的颜色配置。
 
@@ -333,7 +333,7 @@ Visual         xxx term=reverse ctermbg=7 guibg=LightGrey
 Visual         xxx term=reverse cterm=reverse guibg=none
 ```
 
-![visual-wt-3](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/vi/visual-wt-3.jpg)
+![visual-wt-3](https://gitee.com/zhangyaaoo/blogpics/raw/master/vi/visual-wt-3.jpg)
 
 
 

@@ -109,5 +109,5 @@ bin 目录包含了命令行工具。如果你没有 shell 可以访问你的服
 
 
 **效果展示：**
-![](https://raw.githubusercontent.com/zhangyaaoo/ImageBed/master/misc/2019-10-15_152955-dokuwiki-mainpage.png)
+![](https://gitee.com/zhangyaaoo/blogpics/raw/master/misc/2019-10-15_152955-dokuwiki-mainpage.png)
 
