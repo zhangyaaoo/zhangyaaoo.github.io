@@ -86,6 +86,7 @@ cd_is_kernel_fail(no)->op_read_kernel
 st=>start: Start
 e1=>end: rootfs主备校验都失败，退出
 e2=>end: app主备校验都失败，退出
+e3=>end: kernel主备校验都失败，退出
 e=>end: End
 op_scan_main=>operation: scan main pt，获取启动标记信息
 op_verify_rootfs_1=>operation: 校验rootfs签名
@@ -96,17 +97,24 @@ op_verify_app_1=>operation: 校验app签名
 op_verify_app_2=>operation: 校验bkup app签名
 op_sw_app_state=>operation: 切换app标记信息
 
+op_verify_kernel_1=>operation: 校验kernel签名
+op_verify_kernel_2=>operation: 校验bkup kernel签名
+op_sw_kernel_state=>operation: 切换kernel标记信息
+
 cd_verifyr_is_fail_1=>condition: 校验是否失败？
-cd_verifyr_is_OK_2=>condition: 校验是否成功？
+cd_verifyr_is_fail_2=>condition: 校验是否失败？
 cd_verifya_is_fail_1=>condition: 校验是否失败？
-cd_verifya_is_OK_2=>condition: 校验是否成功？
+cd_verifya_is_fail_2=>condition: 校验是否失败？
+cd_verifyk_is_fail_1=>condition: 校验是否失败？
+cd_verifyk_is_fail_2=>condition: 校验是否失败？
 
 st->op_scan_main->op_verify_rootfs_1->cd_verifyr_is_fail_1(no)->op_verify_app_1
-cd_verifyr_is_fail_1(yes)->op_sw_rootfs_state->op_verify_rootfs_2->cd_verifyr_is_OK_2(no)->e1
-cd_verifyr_is_OK_2(yes)->op_verify_app_1->cd_verifya_is_fail_1(no)->e
-cd_verifya_is_fail_1(yes)->op_sw_app_state->op_verify_app_2->cd_verifya_is_OK_2(yes)->e
-cd_verifya_is_OK_2(no)->e2
-
+cd_verifyr_is_fail_1(yes)->op_sw_rootfs_state->op_verify_rootfs_2->cd_verifyr_is_fail_2(yes)->e1
+cd_verifyr_is_fail_2(no)->op_verify_app_1->cd_verifya_is_fail_1(no)->op_verify_kernel_1
+cd_verifya_is_fail_1(yes)->op_sw_app_state->op_verify_app_2->cd_verifya_is_fail_2(yes)->e2
+cd_verifya_is_fail_2(no)->op_verify_kernel_1->cd_verifyk_is_fail_1(no)->e
+cd_verifyk_is_fail_1(yes)->op_sw_kernel_state->op_verify_kernel_2->cd_verifyk_is_fail_2(no)->e
+cd_verifyk_is_fail_2(yes)->e3
 ```
 
 ### mount rootfs flow
